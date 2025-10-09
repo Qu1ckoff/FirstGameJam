@@ -361,7 +361,9 @@
 "Assets/Scripts/Player/PlayerMovement.cs"
 "Assets/Scripts/Player/SlimeTrai.cs"
 "Assets/Scripts/RecycleFood/Eatable.cs"
+"Assets/Scripts/RecycleFood/EatPromptUI.cs"
 "Assets/Scripts/RecycleFood/FoodProduct.cs"
+"Assets/Scripts/RecycleFood/StomachUI.cs"
 -langversion:9.0
 /deterministic
 /optimize+

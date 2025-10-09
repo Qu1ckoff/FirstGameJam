@@ -560,7 +560,7 @@ MonoBehaviour:
   stomachCapacity: 100
   poopSpawnPoint: {fileID: 8199180525202356498}
   eatKey: 101
-  detectionRadius: 1.5
+  detectionRadius: 2
   detectionDistance: 1.5
   detectionMask:
     serializedVersion: 2

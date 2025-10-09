@@ -6,6 +6,8 @@ public class PlayerDigest : MonoBehaviour
 {
     [Header("Digest System")]
     public float stomachCapacity = 100f;
+    [SerializeField] private float currentStomach = 0f;
+    public float CurrentStomach => currentStomach; // 👈 для UI
     public Transform poopSpawnPoint;
     public KeyCode eatKey = KeyCode.E;
 
@@ -14,7 +16,6 @@ public class PlayerDigest : MonoBehaviour
     public float detectionDistance = 1.5f; // насколько далеко перед собой
     public LayerMask detectionMask;        // слой для мусора (можно оставить Default)
 
-    private float currentStomach;
     private bool isEating = false;
     private Eatable currentTarget;
 
@@ -28,38 +29,46 @@ public class PlayerDigest : MonoBehaviour
 
     void DetectEatable()
     {
-        // позиция центра сферы перед игроком
         Vector3 center = transform.position + transform.forward * detectionDistance;
-
         Collider[] hits = Physics.OverlapSphere(center, detectionRadius, detectionMask);
 
-        if (hits.Length > 0)
-        {
-            Eatable found = null;
+        Eatable found = null;
 
-            foreach (var h in hits)
+        foreach (var h in hits)
+        {
+            var e = h.GetComponent<Eatable>();
+            if (e != null && e.canBeEaten)
             {
-                var e = h.GetComponent<Eatable>();
-                if (e != null && e.canBeEaten)
-                {
-                    found = e;
-                    break;
-                }
+                found = e;
+                break;
+            }
+        }
+
+        if (found != currentTarget)
+        {
+            if (currentTarget != null)
+            {
+                currentTarget.Highlight(false);
+                EatPromptUI.Instance.Hide();
             }
 
             if (found != null)
             {
-                if (currentTarget != found)
-                    Debug.Log($"👀 Обнаружен съедобный объект: {found.trashName}");
-                currentTarget = found;
-                return;
+                Debug.Log($"👀 Обнаружен съедобный объект: {found.trashName}");
+                found.Highlight(true);
+                EatPromptUI.Instance.Show(found.transform);
             }
+
+            currentTarget = found;
         }
 
-        // если ничего не нашли
-        if (currentTarget != null)
+        if (found == null && currentTarget != null)
+        {
             Debug.Log("🔭 В зоне нет съедобных объектов");
-        currentTarget = null;
+            currentTarget.Highlight(false);
+            EatPromptUI.Instance.Hide();
+            currentTarget = null;
+        }
     }
 
     void HandleEating()
@@ -84,14 +93,19 @@ public class PlayerDigest : MonoBehaviour
             {
                 Debug.Log($"⏹️ Поедание {target.trashName} прервано");
                 isEating = false;
+                EatPromptUI.Instance.SetProgress(0);
                 yield break;
             }
 
             timer += Time.deltaTime;
+            EatPromptUI.Instance.SetProgress(timer / target.eatTime);
             yield return null;
         }
 
         Debug.Log($"✅ Закончил есть: {target.trashName}");
+        EatPromptUI.Instance.SetProgress(0);
+        EatPromptUI.Instance.Hide();
+
         Eat(target);
         isEating = false;
     }
@@ -112,6 +126,7 @@ public class PlayerDigest : MonoBehaviour
         Debug.Log($"🗑️ {target.trashName} удалён со сцены");
 
         Debug.Log($"🤢 Начинается переваривание {target.trashName} ({target.digestionTime} сек)");
+
         Coroutine digestion = StartCoroutine(DigestRoutine(target));
         digestionQueue.Add(digestion);
     }
@@ -138,7 +153,6 @@ public class PlayerDigest : MonoBehaviour
         Debug.Log($"🧮 Желудок: {currentStomach}/{stomachCapacity}");
     }
 
-    // Для отладки в сцене
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
