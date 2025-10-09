@@ -1,0 +1,148 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerDigest : MonoBehaviour
+{
+    [Header("Digest System")]
+    public float stomachCapacity = 100f;
+    public Transform poopSpawnPoint;
+    public KeyCode eatKey = KeyCode.E;
+
+    [Header("Detection Settings")]
+    public float detectionRadius = 1.5f;   // радиус области проверки
+    public float detectionDistance = 1.5f; // насколько далеко перед собой
+    public LayerMask detectionMask;        // слой для мусора (можно оставить Default)
+
+    private float currentStomach;
+    private bool isEating = false;
+    private Eatable currentTarget;
+
+    private List<Coroutine> digestionQueue = new List<Coroutine>();
+
+    void Update()
+    {
+        DetectEatable();
+        HandleEating();
+    }
+
+    void DetectEatable()
+    {
+        // позиция центра сферы перед игроком
+        Vector3 center = transform.position + transform.forward * detectionDistance;
+
+        Collider[] hits = Physics.OverlapSphere(center, detectionRadius, detectionMask);
+
+        if (hits.Length > 0)
+        {
+            Eatable found = null;
+
+            foreach (var h in hits)
+            {
+                var e = h.GetComponent<Eatable>();
+                if (e != null && e.canBeEaten)
+                {
+                    found = e;
+                    break;
+                }
+            }
+
+            if (found != null)
+            {
+                if (currentTarget != found)
+                    Debug.Log($"👀 Обнаружен съедобный объект: {found.trashName}");
+                currentTarget = found;
+                return;
+            }
+        }
+
+        // если ничего не нашли
+        if (currentTarget != null)
+            Debug.Log("🔭 В зоне нет съедобных объектов");
+        currentTarget = null;
+    }
+
+    void HandleEating()
+    {
+        if (currentTarget == null || isEating) return;
+
+        if (Input.GetKeyDown(eatKey))
+        {
+            Debug.Log($"🍽️ Начато поедание: {currentTarget.trashName}");
+            StartCoroutine(EatRoutine(currentTarget));
+        }
+    }
+
+    IEnumerator EatRoutine(Eatable target)
+    {
+        isEating = true;
+        float timer = 0f;
+
+        while (timer < target.eatTime)
+        {
+            if (!Input.GetKey(eatKey))
+            {
+                Debug.Log($"⏹️ Поедание {target.trashName} прервано");
+                isEating = false;
+                yield break;
+            }
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        Debug.Log($"✅ Закончил есть: {target.trashName}");
+        Eat(target);
+        isEating = false;
+    }
+
+    void Eat(Eatable target)
+    {
+        if (currentStomach + target.stomachLoad > stomachCapacity)
+        {
+            Debug.Log("⚠️ Желудок переполнен!");
+            return;
+        }
+
+        Debug.Log($"😋 Съедено: {target.trashName}. Добавляем {target.stomachLoad} в желудок");
+        currentStomach += target.stomachLoad;
+        target.canBeEaten = false;
+
+        Destroy(target.gameObject);
+        Debug.Log($"🗑️ {target.trashName} удалён со сцены");
+
+        Debug.Log($"🤢 Начинается переваривание {target.trashName} ({target.digestionTime} сек)");
+        Coroutine digestion = StartCoroutine(DigestRoutine(target));
+        digestionQueue.Add(digestion);
+    }
+
+    IEnumerator DigestRoutine(Eatable target)
+    {
+        yield return new WaitForSeconds(target.digestionTime);
+
+        Debug.Log($"💩 Переварено: {target.trashName}");
+
+        if (target.resultFoodPrefab != null && poopSpawnPoint != null)
+        {
+            Instantiate(target.resultFoodPrefab, poopSpawnPoint.position, Quaternion.identity);
+            Debug.Log($"🍔 Выкакано: {target.resultFoodPrefab.name}");
+        }
+        else
+        {
+            Debug.LogWarning($"⚠️ Не задан resultFoodPrefab или poopSpawnPoint!");
+        }
+
+        currentStomach -= target.stomachLoad;
+        currentStomach = Mathf.Max(0, currentStomach);
+
+        Debug.Log($"🧮 Желудок: {currentStomach}/{stomachCapacity}");
+    }
+
+    // Для отладки в сцене
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Vector3 center = transform.position + transform.forward * detectionDistance;
+        Gizmos.DrawWireSphere(center, detectionRadius);
+    }
+}
