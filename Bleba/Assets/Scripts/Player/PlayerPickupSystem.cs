@@ -44,25 +44,23 @@ public class PlayerPickupSystem : MonoBehaviour
             }
         }
 
-        // если новый предмет
         if (found != currentTarget)
         {
             if (currentTarget != null)
-                PickupPromptUI.Instance.Hide();
+                PickupPromptUI.Instance?.Hide();
 
             if (found != null)
             {
-                PickupPromptUI.Instance.Show(found.transform);
+                PickupPromptUI.Instance?.Show(found.transform);
                 Debug.Log($"👀 Можно подобрать: {found.itemName}");
             }
 
             currentTarget = found;
         }
 
-        // если предмет ушёл из зоны
         if (found == null && currentTarget != null)
         {
-            PickupPromptUI.Instance.Hide();
+            PickupPromptUI.Instance?.Hide();
             currentTarget = null;
         }
     }
@@ -73,28 +71,45 @@ public class PlayerPickupSystem : MonoBehaviour
 
         if (Input.GetKeyDown(pickupKey))
         {
-            // проверяем, есть ли свободная рука
-            if (leftItem == null)
-            {
-                leftItem = currentTarget;
-                leftItem.OnPicked(leftHand);
-                Debug.Log($"🤲 Взял {leftItem.itemName} в левую руку");
-            }
-            else if (rightItem == null)
-            {
-                rightItem = currentTarget;
-                rightItem.OnPicked(rightHand);
-                Debug.Log($"✋ Взял {rightItem.itemName} в правую руку");
-            }
-            else
-            {
-                Debug.Log("👐 Руки заняты! Нельзя подобрать больше предметов.");
-                return;
-            }
-
-            PickupPromptUI.Instance.Hide();
-            currentTarget = null;
+            TryPickupItem(currentTarget);
         }
+    }
+
+    // Публичный метод: попытаться подобрать предмет программно (используется CarryBoxSystem)
+    // Возвращает true если успешно подобрали (предмет "помещается в руку"), false — если не получилось.
+    public bool TryPickupItem(PickupItem item)
+    {
+        if (item == null || !item.canBePicked) return false;
+
+        // Если уже в руках — нельзя
+        if (leftItem != null && rightItem != null)
+        {
+            Debug.Log("👐 Руки заняты! Нельзя подобрать больше предметов.");
+            // Сюда можно добавить всплывашку BusyHandsUI.Instance?.ShowTemporary();
+            return false;
+        }
+
+        // Сначала в левую рука, потом в правую
+        if (leftItem == null)
+        {
+            leftItem = item;
+            leftItem.OnPicked(leftHand);
+            Debug.Log($"🤲 Взял {leftItem.itemName} в левую руку");
+            PickupPromptUI.Instance?.Hide();
+            UpdateCarryUI();
+            return true;
+        }
+        else if (rightItem == null)
+        {
+            rightItem = item;
+            rightItem.OnPicked(rightHand);
+            Debug.Log($"✋ Взял {rightItem.itemName} в правую руку");
+            PickupPromptUI.Instance?.Hide();
+            UpdateCarryUI();
+            return true;
+        }
+
+        return false;
     }
 
     void HandleDrop()
@@ -122,11 +137,18 @@ public class PlayerPickupSystem : MonoBehaviour
     {
         if (item == null) return;
 
-        Vector3 dropPos = transform.position + transform.forward * 1f + Vector3.up * 0.5f;
-        Vector3 dropForce = transform.forward * 1f + Vector3.up * 1f;
+        Vector3 dropPos = transform.position + transform.forward * 0.4f + Vector3.up * 0.5f;
+        Vector3 dropForce = transform.forward * 0.75f + Vector3.up * 1f;
         item.OnDropped(dropPos, dropForce);
 
         item = null;
+        UpdateCarryUI();
+    }
+
+    void UpdateCarryUI()
+    {
+        bool hasItem = leftItem != null || rightItem != null;
+        CarryIndicatorUI.Instance?.SetVisible(hasItem); // если у тебя есть такой UI
     }
 
     // Для отладки

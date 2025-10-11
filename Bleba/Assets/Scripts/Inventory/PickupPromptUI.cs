@@ -9,7 +9,7 @@ public class PickupPromptUI : MonoBehaviour
     // Перетаскивай сюда RectTransform небольшого UI-элемента (child of your main Canvas),
     // а не сам Canvas. Этот объект будет включаться/выключаться.
     public RectTransform promptRoot;
-    public Image keyIcon; // опционально: иконка "Q"
+    public Image keyIcon; // опционально: иконка "Е"
 
     private Canvas parentCanvas;
     private RectTransform canvasRect;

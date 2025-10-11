@@ -169,6 +169,161 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &4296720105802604558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7347188231675489861}
+  - component: {fileID: 6782467051834789888}
+  m_Layer: 0
+  m_Name: RopeLine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7347188231675489861
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4296720105802604558}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.02, z: -0.45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7800203102707693999}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!120 &6782467051834789888
+LineRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4296720105802604558}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 5.1081476, y: 0.40000004, z: -1.1831391}
+  - {x: 5.120334, y: 0.37621313, z: -1.1479017}
+  - {x: 5.132521, y: 0.35319665, z: -1.1126642}
+  - {x: 5.1447077, y: 0.33170193, z: -1.0774268}
+  - {x: 5.1568947, y: 0.31244302, z: -1.0421894}
+  - {x: 5.169081, y: 0.2960787, z: -1.0069519}
+  - {x: 5.181268, y: 0.28319663, z: -0.9717145}
+  - {x: 5.1934547, y: 0.27429876, z: -0.9364771}
+  - {x: 5.2056417, y: 0.26978877, z: -0.9012397}
+  - {x: 5.2178283, y: 0.26996243, z: -0.86600226}
+  - {x: 5.230015, y: 0.2750001, z: -0.83076483}
+  - {x: 5.242202, y: 0.28496242, z: -0.7955274}
+  - {x: 5.2543883, y: 0.2997888, z: -0.76028997}
+  - {x: 5.2665753, y: 0.31929877, z: -0.7250526}
+  - {x: 5.278762, y: 0.34319672, z: -0.68981516}
+  - {x: 5.290949, y: 0.37107876, z: -0.65457773}
+  - {x: 5.3031354, y: 0.40244305, z: -0.61934024}
+  - {x: 5.3153224, y: 0.436702, z: -0.5841028}
+  - {x: 5.327509, y: 0.47319674, z: -0.54886544}
+  - {x: 5.339696, y: 0.51121324, z: -0.513628}
+  - {x: 5.3518825, y: 0.55000013, z: -0.47839057}
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 0.1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 0.381132, g: 0.24963562, b: 0.11433956, a: 1}
+      key1: {r: 0.3803922, g: 0.2509804, b: 0.1137255, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    textureScale: {x: 1, y: 1}
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MaskInteraction: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
+  m_ApplyActiveColorSpace: 1
 --- !u!1 &4582030292811841690
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,6 +584,7 @@ GameObject:
   - component: {fileID: 6856843218965140182}
   - component: {fileID: 4556855655978411117}
   - component: {fileID: 6682417864908003056}
+  - component: {fileID: 6094819219643695053}
   - component: {fileID: 4295696465937600296}
   - component: {fileID: 548407920699769886}
   m_Layer: 0
@@ -457,6 +613,7 @@ Transform:
   - {fileID: 8199180525202356498}
   - {fileID: 3593513520778424923}
   - {fileID: 812581274035614825}
+  - {fileID: 7347188231675489861}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3899527797013689188
@@ -613,14 +770,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionRadius: 1.2
-  detectionDistance: 1.04
+  detectionDistance: 1
   pickupMask:
     serializedVersion: 2
     m_Bits: 64
   leftHand: {fileID: 3593513520778424923}
   rightHand: {fileID: 812581274035614825}
-  pickupKey: 113
-  dropKey: 103
+  pickupKey: 101
+  dropKey: 113
+--- !u!114 &6094819219643695053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6943361361702665791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aa5f44a6f06cad4dbeb7062b81f9dfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRadius: 1.2
+  detectionDistance: 1
+  boxMask:
+    serializedVersion: 2
+    m_Bits: 128
+  interactKey: 114
+  ropeLength: 1.5
+  ropeRenderer: {fileID: 6782467051834789888}
+  ropeAttachPoint: {fileID: 8199180525202356498}
+  ropeSegments: 20
 --- !u!114 &4295696465937600296
 MonoBehaviour:
   m_ObjectHideFlags: 0
