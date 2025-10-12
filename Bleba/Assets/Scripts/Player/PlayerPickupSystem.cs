@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerPickupSystem : MonoBehaviour
@@ -17,39 +16,9 @@ public class PlayerPickupSystem : MonoBehaviour
     public KeyCode pickupKey = KeyCode.Q;
     public KeyCode dropKey = KeyCode.G;
 
-    [Header("Словарь предметов (ID -> Prefab)")]
-    public List<ProductReceiver.ProductEntry> itemPrefabs;
-    private Dictionary<string, GameObject> prefabDict = new Dictionary<string, GameObject>();
-
     private PickupItem currentTarget;
     private PickupItem leftItem;
     private PickupItem rightItem;
-    void Awake()
-    {
-        // Заполняем словарь ID → Prefab
-        foreach (var entry in itemPrefabs)
-            prefabDict[entry.id] = entry.prefab;
-
-        // Восстановление предметов в руках
-        PlayerSaveManager.Load();
-        var pdata = PlayerSaveManager.GetData();
-
-        if (!string.IsNullOrEmpty(pdata.leftItemID) && prefabDict.ContainsKey(pdata.leftItemID))
-        {
-            GameObject leftObj = Instantiate(prefabDict[pdata.leftItemID]);
-            PickupItem leftPickup = leftObj.GetComponent<PickupItem>();
-            if (leftPickup != null)
-                TryPickupItem(leftPickup, leftHand, true);
-        }
-
-        if (!string.IsNullOrEmpty(pdata.rightItemID) && prefabDict.ContainsKey(pdata.rightItemID))
-        {
-            GameObject rightObj = Instantiate(prefabDict[pdata.rightItemID]);
-            PickupItem rightPickup = rightObj.GetComponent<PickupItem>();
-            if (rightPickup != null)
-                TryPickupItem(rightPickup, rightHand, true);
-        }
-    }
 
     void Update()
     {
@@ -143,30 +112,6 @@ public class PlayerPickupSystem : MonoBehaviour
         return false;
     }
 
-    private bool TryPickupItem(PickupItem item, Transform hand, bool isRestore = false)
-    {
-        if (item == null || !item.canBePicked) return false;
-
-        if (leftItem == null)
-        {
-            leftItem = item;
-            leftItem.OnPicked(hand);
-            if (!isRestore) PickupPromptUI.Instance?.Hide();
-            UpdateCarryUI();
-            return true;
-        }
-        else if (rightItem == null)
-        {
-            rightItem = item;
-            rightItem.OnPicked(hand);
-            if (!isRestore) PickupPromptUI.Instance?.Hide();
-            UpdateCarryUI();
-            return true;
-        }
-
-        return false;
-    }
-
     void HandleDrop()
     {
         if (Input.GetKeyDown(dropKey))
@@ -212,12 +157,5 @@ public class PlayerPickupSystem : MonoBehaviour
         Gizmos.color = Color.yellow;
         Vector3 center = transform.position + transform.forward * detectionDistance;
         Gizmos.DrawWireSphere(center, detectionRadius);
-    }
-
-    private void OnApplicationQuit()
-    {
-        string leftID = leftItem != null ? leftItem.GetComponent<ProductID>()?.id : "";
-        string rightID = rightItem != null ? rightItem.GetComponent<ProductID>()?.id : "";
-        PlayerSaveManager.Save(transform.position, transform.rotation, leftID, rightID);
     }
 }
