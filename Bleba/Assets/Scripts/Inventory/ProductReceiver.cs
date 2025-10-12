@@ -21,25 +21,15 @@ public class ProductReceiver : MonoBehaviour
     private Transform player;
     private bool playerNearby = false;
 
-    [Header("Список префабов продуктов")]
-    public List<ProductEntry> productPrefabs;
-
-    [System.Serializable]
-    public struct ProductEntry
-    {
-        public string id;
-        public GameObject prefab;
-    }
-
-    private Dictionary<string, GameObject> prefabDict = new Dictionary<string, GameObject>();
-
     void Awake()
     {
-        foreach (var entry in productPrefabs)
-            prefabDict[entry.id] = entry.prefab;
+        if (ItemDatabase.Instance == null)
+        {
+            Debug.LogError("❌ ItemDatabase не найден!");
+            return;
+        }
 
-        // Загружаем продукты из сохранения
-        ShopSaveManager.Load();
+        GameDataManager.LoadFromDisk();
         LoadProductsFromSave();
     }
 
@@ -50,12 +40,14 @@ public class ProductReceiver : MonoBehaviour
             uiGroup = uiCanvas.GetComponent<CanvasGroup>() ?? uiCanvas.gameObject.AddComponent<CanvasGroup>();
             uiGroup.alpha = 0f;
         }
+
         UpdateUI();
     }
 
     void Update()
     {
         DetectPlayer();
+
         if (uiGroup != null)
         {
             float targetAlpha = playerNearby ? 1f : 0f;
@@ -66,9 +58,7 @@ public class ProductReceiver : MonoBehaviour
     void LateUpdate()
     {
         if (uiCanvas != null && Camera.main != null)
-        {
             uiCanvas.position = Camera.main.WorldToScreenPoint(transform.position + uiOffset);
-        }
     }
 
     private void DetectPlayer()
@@ -76,53 +66,62 @@ public class ProductReceiver : MonoBehaviour
         if (player == null)
         {
             GameObject found = GameObject.FindGameObjectWithTag(playerTag);
-            if (found != null) player = found.transform;
+            if (found != null)
+                player = found.transform;
         }
+
         if (player == null) return;
         playerNearby = Vector3.Distance(transform.position, player.position) <= playerDetectRadius;
     }
+
+    // =====================
+    // 💾 Загрузка / сохранение
+    // =====================
     private void LoadProductsFromSave()
     {
         storedProducts.Clear();
 
-        foreach (string id in ShopSaveManager.GetProducts())
+        var savedIDs = GameDataManager.Shop.products;
+        foreach (string id in savedIDs)
         {
-            if (!prefabDict.ContainsKey(id))
+            GameObject prefab = ItemDatabase.Instance.GetPrefab(id);
+            if (prefab == null)
             {
-                Debug.LogWarning($"⚠ Префаб с ID '{id}' не найден!");
+                Debug.LogWarning($"⚠ Продукт '{id}' не найден в ItemDatabase!");
                 continue;
             }
-            AddProductByID(id);
-        }
 
-        UpdateUI();
-        Debug.Log($"📂 Приёмник загружен: {storedProducts.Count} продуктов");
-    }
-    private void AddProductByID(string id)
-    {
-        if (prefabDict.TryGetValue(id, out GameObject prefab))
-        {
             GameObject obj = Instantiate(prefab);
             obj.SetActive(false);
             storedProducts.Add(obj);
         }
+
+        UpdateUI();
+        Debug.Log($"📦 Receiver: загружено {storedProducts.Count} продуктов");
     }
 
+    public void SaveProgress()
+    {
+        GameDataManager.SaveShop(GetStoredProductIDs());
+    }
+
+    // =====================
+    // ➕ Добавление продуктов
+    // =====================
     public bool AddProduct(GameObject product)
     {
-        if (storedProducts.Count >= maxSlots) return false;
+        if (storedProducts.Count >= maxSlots)
+        {
+            Debug.Log("🚫 Приёмник переполнен!");
+            return false;
+        }
 
         storedProducts.Add(product);
         product.SetActive(false);
         UpdateUI();
         SaveProgress();
-        return true;
-    }
 
-    private void UpdateUI()
-    {
-        if (fillText != null)
-            fillText.text = $"{storedProducts.Count}/{maxSlots}";
+        return true;
     }
 
     public List<string> GetStoredProductIDs()
@@ -136,9 +135,10 @@ public class ProductReceiver : MonoBehaviour
         return ids;
     }
 
-    public void SaveProgress()
+    private void UpdateUI()
     {
-        ShopSaveManager.Save(GetStoredProductIDs());
+        if (fillText != null)
+            fillText.text = $"{storedProducts.Count}/{maxSlots}";
     }
 
     private void OnTriggerEnter(Collider other)

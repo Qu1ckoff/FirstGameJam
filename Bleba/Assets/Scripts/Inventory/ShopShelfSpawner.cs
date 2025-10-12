@@ -7,19 +7,9 @@ public class ShopShelfSpawner : MonoBehaviour
     [Header("Слоты для продуктов на полке")]
     public List<Transform> emptySlots;
 
-    [Header("Список префабов")]
-    public List<ProductReceiver.ProductEntry> productPrefabs;
-
-    private Dictionary<string, GameObject> prefabDict = new Dictionary<string, GameObject>();
-
     void Awake()
     {
-        foreach (var entry in productPrefabs)
-            prefabDict[entry.id] = entry.prefab;
-
-        // Загружаем список продуктов для магазина
-        ShopSaveManager.Load();
-        ShopData.productsToSell = ShopSaveManager.GetProducts();
+        GameDataManager.LoadFromDisk(); // Загружаем всё один раз
     }
 
     void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
@@ -32,13 +22,14 @@ public class ShopShelfSpawner : MonoBehaviour
 
     private void SpawnProducts()
     {
-        var products = ShopData.productsToSell;
+        var products = GameDataManager.Shop.products;
         if (products.Count == 0) return;
 
         for (int i = 0; i < products.Count && i < emptySlots.Count; i++)
         {
             string id = products[i];
-            if (prefabDict.TryGetValue(id, out GameObject prefab))
+            GameObject prefab = ItemDatabase.Instance.GetPrefab(id);
+            if (prefab != null)
                 Instantiate(prefab, emptySlots[i].position, emptySlots[i].rotation, emptySlots[i]);
         }
 
@@ -53,18 +44,20 @@ public class ShopShelfSpawner : MonoBehaviour
             if (slot.childCount > 0)
             {
                 var pid = slot.GetChild(0).GetComponent<ProductID>();
-                if (pid != null) ids.Add(pid.id);
+                if (pid != null)
+                    ids.Add(pid.id);
             }
         }
         return ids;
     }
+
     public void SaveShelfState()
     {
-        List<string> shelfProducts = GetShelfProductIDs(); // текущие продукты на полках
-        ShopSaveManager.Save(shelfProducts); // сохраняем один список продуктов
-        ShopData.productsToSell = new List<string>(shelfProducts);
+        List<string> shelfProducts = GetShelfProductIDs();
+        GameDataManager.SaveShop(shelfProducts);
         Debug.Log($"💾 Состояние магазина сохранено: {shelfProducts.Count} продуктов на полках");
     }
+
     public void TakeProductFromShelf(Transform slot)
     {
         if (slot.childCount > 0)
@@ -73,5 +66,4 @@ public class ShopShelfSpawner : MonoBehaviour
             SaveShelfState();
         }
     }
-
 }

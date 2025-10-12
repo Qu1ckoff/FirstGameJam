@@ -385,9 +385,10 @@
 "Assets/Scripts/RecycleFood/FoodProduct.cs"
 "Assets/Scripts/RecycleFood/StomachUI.cs"
 "Assets/Scripts/Saves/GameData.cs"
+"Assets/Scripts/Saves/GameDataManager.cs"
+"Assets/Scripts/Saves/ItemDatabase.cs"
 "Assets/Scripts/Saves/PlayerSaveManager.cs"
 "Assets/Scripts/Saves/SaveSystem.cs"
-"Assets/Scripts/Saves/ShopBootstrapper.cs"
 "Assets/Scripts/Saves/ShopData.cs"
 "Assets/Scripts/Saves/ShopSaveManager.cs"
 -langversion:9.0

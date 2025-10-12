@@ -1,6 +1,5 @@
-﻿using System.Collections;
+﻿using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class PlayerPickupSystem : MonoBehaviour
 {
@@ -17,37 +16,43 @@ public class PlayerPickupSystem : MonoBehaviour
     public KeyCode pickupKey = KeyCode.Q;
     public KeyCode dropKey = KeyCode.G;
 
-    [Header("Словарь предметов (ID -> Prefab)")]
-    public List<ProductReceiver.ProductEntry> itemPrefabs;
-    private Dictionary<string, GameObject> prefabDict = new Dictionary<string, GameObject>();
-
     private PickupItem currentTarget;
     private PickupItem leftItem;
     private PickupItem rightItem;
+
     void Awake()
     {
-        // Заполняем словарь ID → Prefab
-        foreach (var entry in itemPrefabs)
-            prefabDict[entry.id] = entry.prefab;
+        GameDataManager.LoadFromDisk();
 
-        // Восстановление предметов в руках
-        PlayerSaveManager.Load();
-        var pdata = PlayerSaveManager.GetData();
-
-        if (!string.IsNullOrEmpty(pdata.leftItemID) && prefabDict.ContainsKey(pdata.leftItemID))
+        // Восстановление предметов из сохранения
+        if (ItemDatabase.Instance == null)
         {
-            GameObject leftObj = Instantiate(prefabDict[pdata.leftItemID]);
-            PickupItem leftPickup = leftObj.GetComponent<PickupItem>();
-            if (leftPickup != null)
-                TryPickupItem(leftPickup, leftHand, true);
+            Debug.LogError("❌ Не найден ItemDatabase!");
+            return;
         }
 
-        if (!string.IsNullOrEmpty(pdata.rightItemID) && prefabDict.ContainsKey(pdata.rightItemID))
+        var pdata = GameDataManager.Player;
+
+        if (!string.IsNullOrEmpty(pdata.leftItemID))
         {
-            GameObject rightObj = Instantiate(prefabDict[pdata.rightItemID]);
-            PickupItem rightPickup = rightObj.GetComponent<PickupItem>();
-            if (rightPickup != null)
-                TryPickupItem(rightPickup, rightHand, true);
+            var prefab = ItemDatabase.Instance.GetPrefab(pdata.leftItemID);
+            if (prefab != null)
+            {
+                var obj = Instantiate(prefab);
+                var pickup = obj.GetComponent<PickupItem>();
+                TryPickupItem(pickup, leftHand, true);
+            }
+        }
+
+        if (!string.IsNullOrEmpty(pdata.rightItemID))
+        {
+            var prefab = ItemDatabase.Instance.GetPrefab(pdata.rightItemID);
+            if (prefab != null)
+            {
+                var obj = Instantiate(prefab);
+                var pickup = obj.GetComponent<PickupItem>();
+                TryPickupItem(pickup, rightHand, true);
+            }
         }
     }
 
@@ -81,10 +86,7 @@ public class PlayerPickupSystem : MonoBehaviour
                 PickupPromptUI.Instance?.Hide();
 
             if (found != null)
-            {
                 PickupPromptUI.Instance?.Show(found.transform);
-                Debug.Log($"👀 Можно подобрать: {found.itemName}");
-            }
 
             currentTarget = found;
         }
@@ -99,72 +101,35 @@ public class PlayerPickupSystem : MonoBehaviour
     void HandlePickup()
     {
         if (currentTarget == null) return;
-
         if (Input.GetKeyDown(pickupKey))
-        {
             TryPickupItem(currentTarget);
-        }
     }
 
-    // Публичный метод: попытаться подобрать предмет программно (используется CarryBoxSystem)
-    // Возвращает true если успешно подобрали (предмет "помещается в руку"), false — если не получилось.
-    public bool TryPickupItem(PickupItem item)
+    public bool TryPickupItem(PickupItem item, Transform hand = null, bool isRestore = false)
     {
         if (item == null || !item.canBePicked) return false;
 
-        // Если уже в руках — нельзя
-        if (leftItem != null && rightItem != null)
+        if (leftItem == null)
         {
-            Debug.Log("👐 Руки заняты! Нельзя подобрать больше предметов.");
-            // Сюда можно добавить всплывашку BusyHandsUI.Instance?.ShowTemporary();
+            leftItem = item;
+            leftItem.OnPicked(hand ?? leftHand);
+        }
+        else if (rightItem == null)
+        {
+            rightItem = item;
+            rightItem.OnPicked(hand ?? rightHand);
+        }
+        else
+        {
+            Debug.Log("👐 Руки заняты!");
             return false;
         }
 
-        // Сначала в левую рука, потом в правую
-        if (leftItem == null)
-        {
-            leftItem = item;
-            leftItem.OnPicked(leftHand);
-            Debug.Log($"🤲 Взял {leftItem.itemName} в левую руку");
+        if (!isRestore)
             PickupPromptUI.Instance?.Hide();
-            UpdateCarryUI();
-            return true;
-        }
-        else if (rightItem == null)
-        {
-            rightItem = item;
-            rightItem.OnPicked(rightHand);
-            Debug.Log($"✋ Взял {rightItem.itemName} в правую руку");
-            PickupPromptUI.Instance?.Hide();
-            UpdateCarryUI();
-            return true;
-        }
 
-        return false;
-    }
-
-    private bool TryPickupItem(PickupItem item, Transform hand, bool isRestore = false)
-    {
-        if (item == null || !item.canBePicked) return false;
-
-        if (leftItem == null)
-        {
-            leftItem = item;
-            leftItem.OnPicked(hand);
-            if (!isRestore) PickupPromptUI.Instance?.Hide();
-            UpdateCarryUI();
-            return true;
-        }
-        else if (rightItem == null)
-        {
-            rightItem = item;
-            rightItem.OnPicked(hand);
-            if (!isRestore) PickupPromptUI.Instance?.Hide();
-            UpdateCarryUI();
-            return true;
-        }
-
-        return false;
+        UpdateCarryUI();
+        return true;
     }
 
     void HandleDrop()
@@ -172,19 +137,9 @@ public class PlayerPickupSystem : MonoBehaviour
         if (Input.GetKeyDown(dropKey))
         {
             if (rightItem != null)
-            {
                 DropItem(ref rightItem);
-                Debug.Log("🫳 Выбросил предмет из правой руки");
-            }
             else if (leftItem != null)
-            {
                 DropItem(ref leftItem);
-                Debug.Log("🫴 Выбросил предмет из левой руки");
-            }
-            else
-            {
-                Debug.Log("🤷 Нечего выбрасывать");
-            }
         }
     }
 
@@ -195,29 +150,21 @@ public class PlayerPickupSystem : MonoBehaviour
         Vector3 dropPos = transform.position + transform.forward * 0.4f + Vector3.up * 0.5f;
         Vector3 dropForce = transform.forward * 0.75f + Vector3.up * 1f;
         item.OnDropped(dropPos, dropForce);
-
         item = null;
+
         UpdateCarryUI();
     }
 
     void UpdateCarryUI()
     {
         bool hasItem = leftItem != null || rightItem != null;
-        CarryIndicatorUI.Instance?.SetVisible(hasItem); // если у тебя есть такой UI
-    }
-
-    // Для отладки
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Vector3 center = transform.position + transform.forward * detectionDistance;
-        Gizmos.DrawWireSphere(center, detectionRadius);
+        CarryIndicatorUI.Instance?.SetVisible(hasItem);
     }
 
     private void OnApplicationQuit()
     {
         string leftID = leftItem != null ? leftItem.GetComponent<ProductID>()?.id : "";
         string rightID = rightItem != null ? rightItem.GetComponent<ProductID>()?.id : "";
-        PlayerSaveManager.Save(transform.position, transform.rotation, leftID, rightID);
+        GameDataManager.SavePlayer(transform.position, transform.rotation, leftID, rightID);
     }
 }
