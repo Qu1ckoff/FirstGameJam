@@ -1,5 +1,50 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+
+[System.Serializable]
+public class CarryBoxSaveData
+{
+    public List<string> itemIDs = new List<string>();
+    public Vector3 position;
+    public Quaternion rotation;
+}
+
+public static class CarryBoxSaveManager
+{
+    private static string savePath => Path.Combine(Application.persistentDataPath, "carrybox.json");
+    private static CarryBoxSaveData data = new CarryBoxSaveData();
+
+    public static void Load()
+    {
+        if (!File.Exists(savePath))
+        {
+            data = new CarryBoxSaveData();
+            return;
+        }
+
+        string json = File.ReadAllText(savePath);
+        data = JsonUtility.FromJson<CarryBoxSaveData>(json);
+    }
+
+    public static void Save(List<string> itemIDs, Vector3 position, Quaternion rotation)
+    {
+        data = new CarryBoxSaveData
+        {
+            itemIDs = new List<string>(itemIDs),
+            position = position,
+            rotation = rotation
+        };
+
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(savePath, json);
+        Debug.Log($"💾 CarryBox сохранён: {itemIDs.Count} предметов, позиция {position}");
+    }
+
+    public static List<string> GetItemIDs() => new List<string>(data.itemIDs);
+    public static Vector3 GetPosition() => data.position;
+    public static Quaternion GetRotation() => data.rotation;
+}
 
 [RequireComponent(typeof(Rigidbody))]
 public class CarryBox : MonoBehaviour
@@ -25,9 +70,24 @@ public class CarryBox : MonoBehaviour
     private Stack<GameObject> storedItems = new Stack<GameObject>();
     private BoxInventoryUI inventoryUI;
 
+    [Header("Словарь предметов (ID -> Prefab)")]
+    public List<ProductReceiver.ProductEntry> itemPrefabs;
+    private Dictionary<string, GameObject> prefabDict = new Dictionary<string, GameObject>();
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+
+        // Заполняем словарь ID → Prefab
+        foreach (var entry in itemPrefabs)
+        {
+            if (!prefabDict.ContainsKey(entry.id))
+                prefabDict.Add(entry.id, entry.prefab);
+        }
+
+        // Загружаем предметы из сохранения и позицию
+        CarryBoxSaveManager.Load();
+        LoadItemsFromSave();
     }
 
     void Start()
@@ -40,6 +100,32 @@ public class CarryBox : MonoBehaviour
     // 📦 ИНВЕНТАРЬ
     // ============================
 
+    private void LoadItemsFromSave()
+    {
+        storedItems.Clear();
+
+        // Восстановление позиции и вращения
+        transform.position = CarryBoxSaveManager.GetPosition();
+        transform.rotation = CarryBoxSaveManager.GetRotation();
+
+        foreach (string id in CarryBoxSaveManager.GetItemIDs())
+        {
+            if (!prefabDict.ContainsKey(id))
+            {
+                Debug.LogWarning($"⚠ Префаб с ID '{id}' не найден для CarryBox!");
+                continue;
+            }
+
+            GameObject obj = Instantiate(prefabDict[id]);
+            obj.SetActive(false);
+            obj.transform.SetParent(transform, true);
+            storedItems.Push(obj);
+        }
+
+        UpdateUI();
+        Debug.Log($"📦 CarryBox загружена: {storedItems.Count} предметов, позиция {transform.position}");
+    }
+
     public bool AddItem(GameObject item)
     {
         if (storedItems.Count >= capacity)
@@ -48,10 +134,8 @@ public class CarryBox : MonoBehaviour
             return false;
         }
 
-        // Отсоединяем физику/трансформ и прячем предмет
         storedItems.Push(item);
 
-        // Деактивируем (скрываем) и прикрепляем к коробке
         var rbItem = item.GetComponent<Rigidbody>();
         if (rbItem != null)
         {
@@ -62,11 +146,11 @@ public class CarryBox : MonoBehaviour
         item.transform.SetParent(transform, true);
         item.SetActive(false);
 
-        Debug.Log($"🟢 {item.name} помещён в коробку ({storedItems.Count}/{capacity})");
         UpdateUI();
+        SaveBoxProgress();
+        Debug.Log($"🟢 {item.name} помещён в коробку ({storedItems.Count}/{capacity})");
         return true;
     }
-
     public void TakeItem()
     {
         if (storedItems.Count == 0)
@@ -76,8 +160,6 @@ public class CarryBox : MonoBehaviour
         }
 
         GameObject item = storedItems.Pop();
-
-        // Восстанавливаем физику и показываем
         item.transform.SetParent(null, true);
         item.SetActive(true);
 
@@ -88,19 +170,29 @@ public class CarryBox : MonoBehaviour
             rbItem.detectCollisions = true;
         }
 
-        Vector3 spawnPos = itemSpawnPoint != null ?
-            itemSpawnPoint.position :
-            transform.position + transform.forward * 1f + Vector3.up * 0.5f;
-
+        // Спавн предмета чуть в стороне от коробки, чтобы не засосало обратно
+        Vector3 spawnOffset = transform.forward * 1f + transform.right * 0.5f + Vector3.up * 0.5f;
+        Vector3 spawnPos = itemSpawnPoint != null ? itemSpawnPoint.position + spawnOffset : transform.position + spawnOffset;
         item.transform.position = spawnPos;
 
         // небольшой импульс, чтобы предмет "вылетел"
-        rbItem = item.GetComponent<Rigidbody>();
         if (rbItem != null)
-            rbItem.AddForce(transform.forward * 0.4f + Vector3.up * 0.5f, ForceMode.Impulse);
+            rbItem.AddForce(transform.forward * 0.5f + Vector3.up * 0.5f, ForceMode.Impulse);
 
-        Debug.Log($"🔵 {item.name} извлечён из коробки ({storedItems.Count}/{capacity})");
         UpdateUI();
+        SaveBoxProgress();
+        Debug.Log($"🔵 {item.name} извлечён из коробки ({storedItems.Count}/{capacity})");
+    }
+    public void SaveBoxProgress()
+    {
+        List<string> ids = new List<string>();
+        foreach (var item in storedItems)
+        {
+            var pid = item.GetComponent<ProductID>();
+            if (pid != null) ids.Add(pid.id);
+        }
+
+        CarryBoxSaveManager.Save(ids, transform.position, transform.rotation);
     }
 
     // ============================
@@ -195,10 +287,14 @@ public class CarryBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Если предмет попадает в триггер коробки — пытаемся положить его
         if (other.CompareTag("PickupItem"))
         {
             AddItem(other.gameObject);
         }
+    }
+
+    void OnApplicationQuit()
+    {
+        SaveBoxProgress();
     }
 }
