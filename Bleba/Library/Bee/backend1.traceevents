@@ -1,5 +1,6 @@
 { "cat":"", "pid":12345, "tid":0, "ts":0, "ph":"M", "name":"process_name", "args": { "name":"bee_backend" } }
 <<<<<<< HEAD
+<<<<<<< HEAD
 ,{ "pid":12345, "tid":0, "ts":1760292075135219, "dur":59, "ph":"X", "name": "IPC_Client_InitializeAndConnectToParent",  "args": { "detail":"" }}
 ,{ "pid":12345, "tid":0, "ts":1760292075135317, "dur":2641, "ph":"X", "name": "DriverInitData",  "args": { "detail":"" }}
 ,{ "pid":12345, "tid":0, "ts":1760292075137974, "dur":395, "ph":"X", "name": "RemoveStaleOutputs",  "args": { "detail":"" }}
@@ -649,6 +650,8 @@
 ,{ "pid":12345, "tid":12, "ts":1760292075167111, "dur":191750, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
 ,{ "pid":12345, "tid":0, "ts":1760292075364406, "dur":1410, "ph":"X", "name": "ProfilerWriteOutput" }
 =======
+=======
+>>>>>>> parent of 3d1ef82c (0.0.11)
 ,{ "pid":12345, "tid":0, "ts":1760262947893530, "dur":52, "ph":"X", "name": "IPC_Client_InitializeAndConnectToParent",  "args": { "detail":"" }}
 ,{ "pid":12345, "tid":0, "ts":1760262947893615, "dur":3081, "ph":"X", "name": "DriverInitData",  "args": { "detail":"" }}
 ,{ "pid":12345, "tid":0, "ts":1760262947896710, "dur":463, "ph":"X", "name": "RemoveStaleOutputs",  "args": { "detail":"" }}
@@ -1288,5 +1291,8 @@
 ,{ "pid":12345, "tid":12, "ts":1760262947935197, "dur":200, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll (+2 others)" }}
 ,{ "pid":12345, "tid":12, "ts":1760262947935431, "dur":53460, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
 ,{ "pid":12345, "tid":0, "ts":1760262947993825, "dur":1413, "ph":"X", "name": "ProfilerWriteOutput" }
+<<<<<<< HEAD
+>>>>>>> parent of 3d1ef82c (0.0.11)
+=======
 >>>>>>> parent of 3d1ef82c (0.0.11)
 ,

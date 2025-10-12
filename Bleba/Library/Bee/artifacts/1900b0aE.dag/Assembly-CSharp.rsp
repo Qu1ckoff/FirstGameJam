@@ -383,6 +383,7 @@
 "Assets/Scripts/RecycleFood/FoodProduct.cs"
 "Assets/Scripts/RecycleFood/StomachUI.cs"
 <<<<<<< HEAD
+<<<<<<< HEAD
 "Assets/Scripts/Saves/GameData.cs"
 "Assets/Scripts/Saves/GameDataManager.cs"
 "Assets/Scripts/Saves/ItemDatabase.cs"
@@ -390,6 +391,8 @@
 "Assets/Scripts/Saves/SaveSystem.cs"
 "Assets/Scripts/Saves/ShopData.cs"
 "Assets/Scripts/Saves/ShopSaveManager.cs"
+=======
+>>>>>>> parent of 3d1ef82c (0.0.11)
 =======
 >>>>>>> parent of 3d1ef82c (0.0.11)
 -langversion:9.0

@@ -1,5 +1,6 @@
 { "cat":"", "pid":12345, "tid":0, "ts":0, "ph":"M", "name":"process_name", "args": { "name":"bee_backend" } }
 <<<<<<< HEAD
+<<<<<<< HEAD
 ,{ "pid":12345, "tid":0, "ts":1760291592379189, "dur":67, "ph":"X", "name": "IPC_Client_InitializeAndConnectToParent",  "args": { "detail":"" }}
 ,{ "pid":12345, "tid":0, "ts":1760291592379291, "dur":45805, "ph":"X", "name": "DriverInitData",  "args": { "detail":"" }}
 ,{ "pid":12345, "tid":0, "ts":1760291592425105, "dur":187, "ph":"X", "name": "RemoveStaleOutputs",  "args": { "detail":"" }}
@@ -633,6 +634,8 @@
 ,{ "pid":12345, "tid":12, "ts":1760291592451835, "dur":179680, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
 ,{ "pid":12345, "tid":0, "ts":1760291592638143, "dur":1969, "ph":"X", "name": "ProfilerWriteOutput" }
 =======
+=======
+>>>>>>> parent of 3d1ef82c (0.0.11)
 ,{ "pid":12345, "tid":0, "ts":1760260356364710, "dur":63, "ph":"X", "name": "IPC_Client_InitializeAndConnectToParent",  "args": { "detail":"" }}
 ,{ "pid":12345, "tid":0, "ts":1760260356364820, "dur":55491, "ph":"X", "name": "DriverInitData",  "args": { "detail":"" }}
 ,{ "pid":12345, "tid":0, "ts":1760260356420320, "dur":206, "ph":"X", "name": "RemoveStaleOutputs",  "args": { "detail":"" }}
@@ -1470,5 +1473,8 @@
 ,{ "pid":12345, "tid":12, "ts":1760260356455590, "dur":493, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
 ,{ "pid":12345, "tid":12, "ts":1760260356456083, "dur":319174, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
 ,{ "pid":12345, "tid":0, "ts":1760260356779614, "dur":2432, "ph":"X", "name": "ProfilerWriteOutput" }
+<<<<<<< HEAD
+>>>>>>> parent of 3d1ef82c (0.0.11)
+=======
 >>>>>>> parent of 3d1ef82c (0.0.11)
 ,

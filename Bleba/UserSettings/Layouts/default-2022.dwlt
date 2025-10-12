@@ -182,7 +182,11 @@ MonoBehaviour:
   m_MaxSize: {x: 40480, y: 16192}
   vertical: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   controlID: 162
+=======
+  controlID: 115
+>>>>>>> parent of 3d1ef82c (0.0.11)
 =======
   controlID: 115
 >>>>>>> parent of 3d1ef82c (0.0.11)
@@ -523,7 +527,11 @@ MonoBehaviour:
     m_SearchArea: 1
     m_Folders:
 <<<<<<< HEAD
+<<<<<<< HEAD
     - Assets/Scripts/Player
+=======
+    - Assets/Models/box
+>>>>>>> parent of 3d1ef82c (0.0.11)
 =======
     - Assets/Models/box
 >>>>>>> parent of 3d1ef82c (0.0.11)
@@ -535,7 +543,11 @@ MonoBehaviour:
   m_StartGridSize: 64
   m_LastFolders:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - Assets/Scripts/Player
+=======
+  - Assets/Models/box
+>>>>>>> parent of 3d1ef82c (0.0.11)
 =======
   - Assets/Models/box
 >>>>>>> parent of 3d1ef82c (0.0.11)
@@ -546,9 +558,15 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_SelectedIDs: 06610000
     m_LastClickedID: 24838
     m_ExpandedIDs: 00000000c4600000c6600000c860000000ca9a3b
+=======
+    m_SelectedIDs: 8c600000
+    m_LastClickedID: 24716
+    m_ExpandedIDs: 000000003a6000003c6000003e6000006c60000000ca9a3b
+>>>>>>> parent of 3d1ef82c (0.0.11)
 =======
     m_SelectedIDs: 8c600000
     m_LastClickedID: 24716
@@ -582,7 +600,11 @@ MonoBehaviour:
     m_SelectedIDs: 
     m_LastClickedID: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000c4600000c6600000c8600000
+=======
+    m_ExpandedIDs: 000000003a6000003c6000003e600000
+>>>>>>> parent of 3d1ef82c (0.0.11)
 =======
     m_ExpandedIDs: 000000003a6000003c6000003e600000
 >>>>>>> parent of 3d1ef82c (0.0.11)
@@ -728,7 +750,11 @@ MonoBehaviour:
       m_SelectedIDs: d8100000
       m_LastClickedID: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_ExpandedIDs: 08fbffff
+=======
+      m_ExpandedIDs: 14fbffff
+>>>>>>> parent of 3d1ef82c (0.0.11)
 =======
       m_ExpandedIDs: 14fbffff
 >>>>>>> parent of 3d1ef82c (0.0.11)

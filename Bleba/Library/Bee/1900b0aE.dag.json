@@ -23466,7 +23466,11 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1762589,
 <<<<<<< HEAD
+<<<<<<< HEAD
       "PayloadLength": 34240,
+=======
+      "PayloadLength": 33871,
+>>>>>>> parent of 3d1ef82c (0.0.11)
 =======
       "PayloadLength": 33871,
 >>>>>>> parent of 3d1ef82c (0.0.11)
@@ -23482,7 +23486,11 @@
       "DisplayName": "Writing Assembly-CSharp.rsp2",
       "ActionType": "WriteFile",
 <<<<<<< HEAD
+<<<<<<< HEAD
       "PayloadOffset": 1796916,
+=======
+      "PayloadOffset": 1796547,
+>>>>>>> parent of 3d1ef82c (0.0.11)
 =======
       "PayloadOffset": 1796547,
 >>>>>>> parent of 3d1ef82c (0.0.11)
@@ -23760,6 +23768,7 @@
         "Assets/Scripts/RecycleFood/FoodProduct.cs",
         "Assets/Scripts/RecycleFood/StomachUI.cs",
 <<<<<<< HEAD
+<<<<<<< HEAD
         "Assets/Scripts/Saves/GameData.cs",
         "Assets/Scripts/Saves/GameDataManager.cs",
         "Assets/Scripts/Saves/ItemDatabase.cs",
@@ -23767,6 +23776,8 @@
         "Assets/Scripts/Saves/SaveSystem.cs",
         "Assets/Scripts/Saves/ShopData.cs",
         "Assets/Scripts/Saves/ShopSaveManager.cs",
+=======
+>>>>>>> parent of 3d1ef82c (0.0.11)
 =======
 >>>>>>> parent of 3d1ef82c (0.0.11)
         "C:/Program Files/Unity/Hub/Editor/2022.3.62f2/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
@@ -24015,7 +24026,11 @@
       "DisplayName": "Writing Assembly-CSharp.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
 <<<<<<< HEAD
+<<<<<<< HEAD
       "PayloadOffset": 1797012,
+=======
+      "PayloadOffset": 1796643,
+>>>>>>> parent of 3d1ef82c (0.0.11)
 =======
       "PayloadOffset": 1796643,
 >>>>>>> parent of 3d1ef82c (0.0.11)

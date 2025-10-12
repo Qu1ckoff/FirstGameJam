@@ -29,6 +29,7 @@ public class CarryBox : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 <<<<<<< HEAD
+<<<<<<< HEAD
         GameDataManager.LoadFromDisk();
 
         // восстановление
@@ -47,6 +48,8 @@ public class CarryBox : MonoBehaviour
         }
 =======
 >>>>>>> parent of 3d1ef82c (0.0.11)
+=======
+>>>>>>> parent of 3d1ef82c (0.0.11)
     }
 
     void Start()
@@ -61,6 +64,9 @@ public class CarryBox : MonoBehaviour
     // 📦 ИНВЕНТАРЬ
     // ============================
 
+<<<<<<< HEAD
+>>>>>>> parent of 3d1ef82c (0.0.11)
+=======
 >>>>>>> parent of 3d1ef82c (0.0.11)
     public bool AddItem(GameObject item)
     {
@@ -85,8 +91,13 @@ public class CarryBox : MonoBehaviour
         item.transform.SetParent(transform);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         UpdateUI();
         SaveBox();
+=======
+        Debug.Log($"🟢 {item.name} помещён в коробку ({storedItems.Count}/{capacity})");
+        UpdateUI();
+>>>>>>> parent of 3d1ef82c (0.0.11)
 =======
         Debug.Log($"🟢 {item.name} помещён в коробку ({storedItems.Count}/{capacity})");
         UpdateUI();
@@ -125,8 +136,17 @@ public class CarryBox : MonoBehaviour
                 ids.Add(pid.id);
         }
 
+<<<<<<< HEAD
         GameDataManager.SaveCarryBox(transform.position, transform.rotation, ids);
 =======
+=======
+        GameObject item = storedItems.Pop();
+
+        // Восстанавливаем физику и показываем
+        item.transform.SetParent(null, true);
+        item.SetActive(true);
+
+>>>>>>> parent of 3d1ef82c (0.0.11)
         var rbItem = item.GetComponent<Rigidbody>();
         if (rbItem != null)
         {
@@ -147,6 +167,9 @@ public class CarryBox : MonoBehaviour
 
         Debug.Log($"🔵 {item.name} извлечён из коробки ({storedItems.Count}/{capacity})");
         UpdateUI();
+<<<<<<< HEAD
+>>>>>>> parent of 3d1ef82c (0.0.11)
+=======
 >>>>>>> parent of 3d1ef82c (0.0.11)
     }
 
@@ -162,8 +185,11 @@ public class CarryBox : MonoBehaviour
             AddItem(other.gameObject);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     void OnApplicationQuit() => SaveBox();
+=======
+>>>>>>> parent of 3d1ef82c (0.0.11)
 =======
 >>>>>>> parent of 3d1ef82c (0.0.11)
 }
