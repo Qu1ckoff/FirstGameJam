@@ -37,14 +37,9 @@ public class PlayerMovement : MonoBehaviour
         if (staminaSlider != null)
             staminaSlider.value = 1f;
 
+        // если не назначили вручную — найти основную камеру
         if (cameraTransform == null && Camera.main != null)
             cameraTransform = Camera.main.transform;
-
-        // Загружаем позицию игрока
-        PlayerSaveManager.Load();
-        var pdata = PlayerSaveManager.GetData();
-        transform.position = pdata.position;
-        transform.rotation = pdata.rotation;
     }
 
     void Update()

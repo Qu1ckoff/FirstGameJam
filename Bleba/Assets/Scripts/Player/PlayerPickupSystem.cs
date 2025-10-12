@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 ﻿using UnityEngine;
 using System.Collections.Generic;
+=======
+﻿using System.Collections;
+using UnityEngine;
+>>>>>>> parent of 3d1ef82c (0.0.11)
 
 public class PlayerPickupSystem : MonoBehaviour
 {
@@ -19,6 +24,7 @@ public class PlayerPickupSystem : MonoBehaviour
     private PickupItem currentTarget;
     private PickupItem leftItem;
     private PickupItem rightItem;
+<<<<<<< HEAD
 
     void Awake()
     {
@@ -55,6 +61,8 @@ public class PlayerPickupSystem : MonoBehaviour
             }
         }
     }
+=======
+>>>>>>> parent of 3d1ef82c (0.0.11)
 
     void Update()
     {
@@ -128,8 +136,12 @@ public class PlayerPickupSystem : MonoBehaviour
         if (!isRestore)
             PickupPromptUI.Instance?.Hide();
 
+<<<<<<< HEAD
         UpdateCarryUI();
         return true;
+=======
+        return false;
+>>>>>>> parent of 3d1ef82c (0.0.11)
     }
 
     void HandleDrop()
@@ -160,6 +172,7 @@ public class PlayerPickupSystem : MonoBehaviour
         bool hasItem = leftItem != null || rightItem != null;
         CarryIndicatorUI.Instance?.SetVisible(hasItem);
     }
+<<<<<<< HEAD
 
     private void OnApplicationQuit()
     {
@@ -167,4 +180,6 @@ public class PlayerPickupSystem : MonoBehaviour
         string rightID = rightItem != null ? rightItem.GetComponent<ProductID>()?.id : "";
         GameDataManager.SavePlayer(transform.position, transform.rotation, leftID, rightID);
     }
+=======
+>>>>>>> parent of 3d1ef82c (0.0.11)
 }

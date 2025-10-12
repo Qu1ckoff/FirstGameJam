@@ -359,17 +359,15 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.62f2/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.62f2/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
+"Assets/Scripts/GameManager/GameData.cs"
 "Assets/Scripts/GameManager/GameManager.cs"
-"Assets/Scripts/GameManager/SceneTeleport.cs"
+"Assets/Scripts/GameManager/SaveSystem.cs"
 "Assets/Scripts/Inventory/BoxInventoryUI.cs"
 "Assets/Scripts/Inventory/BoxPromptUI.cs"
 "Assets/Scripts/Inventory/CarryBox.cs"
 "Assets/Scripts/Inventory/CarryIndicatorUI.cs"
 "Assets/Scripts/Inventory/PickupItem.cs"
 "Assets/Scripts/Inventory/PickupPromptUI.cs"
-"Assets/Scripts/Inventory/ProductID.cs"
-"Assets/Scripts/Inventory/ProductReceiver.cs"
-"Assets/Scripts/Inventory/ShopShelfSpawner.cs"
 "Assets/Scripts/NPC/NPCBot.cs"
 "Assets/Scripts/NPC/ShopArea.cs"
 "Assets/Scripts/NPC/Waypoint.cs"
@@ -384,6 +382,7 @@
 "Assets/Scripts/RecycleFood/EatPromptUI.cs"
 "Assets/Scripts/RecycleFood/FoodProduct.cs"
 "Assets/Scripts/RecycleFood/StomachUI.cs"
+<<<<<<< HEAD
 "Assets/Scripts/Saves/GameData.cs"
 "Assets/Scripts/Saves/GameDataManager.cs"
 "Assets/Scripts/Saves/ItemDatabase.cs"
@@ -391,6 +390,8 @@
 "Assets/Scripts/Saves/SaveSystem.cs"
 "Assets/Scripts/Saves/ShopData.cs"
 "Assets/Scripts/Saves/ShopSaveManager.cs"
+=======
+>>>>>>> parent of 3d1ef82c (0.0.11)
 -langversion:9.0
 /deterministic
 /optimize+
