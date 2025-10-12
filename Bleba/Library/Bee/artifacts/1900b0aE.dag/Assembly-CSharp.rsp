@@ -390,6 +390,11 @@
 "Assets/Scripts/Saves/ShopBootstrapper.cs"
 "Assets/Scripts/Saves/ShopData.cs"
 "Assets/Scripts/Saves/ShopSaveManager.cs"
+"Assets/Scripts/ShopScripts/InventoryManager.cs"
+"Assets/Scripts/ShopScripts/PlayerCameraController.cs"
+"Assets/Scripts/ShopScripts/PlayerInteraction.cs"
+"Assets/Scripts/ShopScripts/ShelfCell.cs"
+"Assets/Scripts/ShopScripts/UIHint.cs"
 -langversion:9.0
 /deterministic
 /optimize+
