@@ -1,37 +1,44 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIHint : MonoBehaviour
 {
-    public Canvas canvas;
+    [Header("Подсказки для действий")]
+    public GameObject hintE; // Взять (E)
+    public GameObject hintQ; // Положить/Бросить (Q)
 
-    private Camera mainCamera;
-    private Transform target;
+    private Camera cam;
 
     private void Awake()
     {
-        mainCamera = Camera.main;
-        canvas.gameObject.SetActive(false);
+        cam = Camera.main;
+        HideHint();
     }
 
-    public void ShowHint(Transform targetTransform)
+    /// <summary>
+    /// Показываем подсказку на объекте target. showE = true -> E, false -> Q
+    /// </summary>
+    public void ShowHint(Transform target, bool showE)
     {
-        target = targetTransform;
-        canvas.gameObject.SetActive(true);
+        if (target == null) return;
+
+        hintE.SetActive(showE);
+        hintQ.SetActive(!showE);
+
+        Vector3 screenPos = cam.WorldToScreenPoint(target.position);
+
+        if (showE && hintE != null)
+            hintE.transform.position = screenPos;
+
+        if (!showE && hintQ != null)
+            hintQ.transform.position = screenPos;
     }
 
+    /// <summary>
+    /// Скрыть все подсказки
+    /// </summary>
     public void HideHint()
     {
-        canvas.gameObject.SetActive(false);
-        target = null;
-    }
-
-    private void LateUpdate()
-    {
-        if (target != null)
-        {
-            Vector3 screenPos = mainCamera.WorldToScreenPoint(target.position + Vector3.up * 0.5f);
-            canvas.transform.position = screenPos;
-        }
+        if (hintE != null) hintE.SetActive(false);
+        if (hintQ != null) hintQ.SetActive(false);
     }
 }

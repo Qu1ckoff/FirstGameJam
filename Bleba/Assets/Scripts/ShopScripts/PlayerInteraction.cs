@@ -1,97 +1,143 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    [Header("РќР°СЃС‚СЂРѕР№РєРё РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёСЏ")]
     public float interactDistance = 3f;
-    public LayerMask interactLayer;
+    public Transform handPoint;
+    public float throwForce = 5f;
     public UIHint uiHint;
 
-    public Transform handPoint; // точка в руке
-    public Transform shoulder;  // объект плеча
-    public Vector3 handRotationOnPickup; // локальный rotation при взятии
-    public float throwForce = 5f;
-
-    private Vector3 shoulderInitialRotation; // исходный локальный поворот плеча
     private ShelfCell lookedAtCell;
+    private GameObject lookedAtItem;
     private GameObject heldItem;
-
-    private void Start()
-    {
-        if (shoulder != null)
-            shoulderInitialRotation = shoulder.localEulerAngles; // сохраняем исходное положение
-    }
 
     void Update()
     {
-        CheckLookedAtCell();
+        CheckLookedAtObject();
         HandleInput();
     }
-
-    void CheckLookedAtCell()
+    void CheckLookedAtObject()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hit;
+        Camera cam = Camera.main;
+        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+        RaycastHit[] hits = Physics.RaycastAll(ray, interactDistance, ~0, QueryTriggerInteraction.Collide);
 
-        if (Physics.Raycast(ray, out hit, interactDistance, interactLayer))
+        // РЎР±СЂР°СЃС‹РІР°РµРј С‚РµРєСѓС‰РёРµ РѕР±СЉРµРєС‚С‹
+        lookedAtItem = null;
+        lookedAtCell = null;
+        uiHint.HideHint();
+
+        if (hits.Length == 0) return;
+
+        // РЎРѕСЂС‚РёСЂСѓРµРј РїРѕ СЂР°СЃСЃС‚РѕСЏРЅРёСЋ
+        System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+
+        // 1. РџСЂРѕРІРµСЂСЏРµРј СЃРЅР°С‡Р°Р»Р° PickupItem
+        foreach (var h in hits)
         {
-            lookedAtCell = hit.collider.GetComponent<ShelfCell>();
-            if (lookedAtCell != null)
+            if (h.collider.CompareTag("PickupItem"))
             {
-                uiHint.ShowHint(lookedAtCell.transform);
+                lookedAtItem = h.collider.gameObject;
+                uiHint.ShowHint(lookedAtItem.transform, true); // E вЂ” РІР·СЏС‚СЊ РїСЂРµРґРјРµС‚
+                return;
             }
         }
-        else
+
+        // 2. РџСЂРѕРІРµСЂСЏРµРј РїРѕР»РєРё
+        foreach (var h in hits)
         {
-            lookedAtCell = null;
-            uiHint.HideHint();
+            var shelf = h.collider.GetComponent<ShelfCell>();
+            if (shelf != null)
+            {
+                lookedAtCell = shelf;
+
+                if (heldItem == null && shelf.currentItem != null)
+                {
+                    // Р СѓРєРё РїСѓСЃС‚С‹, РЅР° РїРѕР»РєРµ РµСЃС‚СЊ РїСЂРµРґРјРµС‚ вЂ” РїРѕРєР°Р·С‹РІР°РµРј E
+                    uiHint.ShowHint(shelf.transform, true);
+                }
+                else if (heldItem != null)
+                {
+                    // Р СѓРєРё Р·Р°РЅСЏС‚С‹ вЂ” РїРѕРєР°Р·С‹РІР°РµРј Q
+                    uiHint.ShowHint(shelf.transform, false);
+                }
+                else
+                {
+                    // Р СѓРєРё РїСѓСЃС‚С‹, РїРѕР»РєР° РїСѓСЃС‚Р°СЏ вЂ” РЅРµ РїРѕРєР°Р·С‹РІР°РµРј РїРѕРґСЃРєР°Р·РєСѓ
+                    uiHint.HideHint();
+                }
+
+                return;
+            }
         }
     }
 
     void HandleInput()
     {
-        // Взятие предмета в руки
+        // --- Р’Р·СЏС‚СЊ РїСЂРµРґРјРµС‚ ---
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (lookedAtCell != null && heldItem == null)
+            if (heldItem != null) return;
+
+            if (lookedAtItem != null)
             {
-                heldItem = lookedAtCell.TakeItemToHand(handPoint, shoulder, handRotationOnPickup);
+                PickupItemDirectly(lookedAtItem);
+            }
+            else if (lookedAtCell != null && lookedAtCell.currentItem != null)
+            {
+                // Р‘РµСЂС‘Рј РїСЂРµРґРјРµС‚ СЃ РїРѕР»РєРё
+                heldItem = lookedAtCell.TakeItemToHand(handPoint);
+
+                // Р’Р°Р¶РЅРѕРµ РёСЃРїСЂР°РІР»РµРЅРёРµ: РѕС‡РёС‰Р°РµРј СЏС‡РµР№РєСѓ СЃСЂР°Р·Сѓ РїРѕСЃР»Рµ РІР·СЏС‚РёСЏ
+                lookedAtCell.currentItem = null;
             }
         }
 
-        // Кладём на полку или бросаем вперед
+        // --- РџРѕР»РѕР¶РёС‚СЊ / Р±СЂРѕСЃРёС‚СЊ РїСЂРµРґРјРµС‚ ---
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (heldItem != null)
+            if (heldItem == null) return;
+
+            if (lookedAtCell != null)
             {
-                if (lookedAtCell != null)
-                {
-                    lookedAtCell.PlaceItemFromHand(heldItem);
-                    ResetShoulder();
+                if (lookedAtCell.PlaceItemFromHand(heldItem))
                     heldItem = null;
-                }
-                else
-                {
-                    ThrowItem(heldItem);
-                    ResetShoulder();
-                    heldItem = null;
-                }
+            }
+            else
+            {
+                ThrowItem(heldItem);
+                heldItem = null;
+                InventoryManager.Instance.ClearHeldItem();
             }
         }
+    }
+
+    void PickupItemDirectly(GameObject item)
+    {
+        if (heldItem != null) return;
+
+        Rigidbody rb = item.GetComponent<Rigidbody>();
+        if (rb != null) rb.isKinematic = true;
+
+        item.transform.SetParent(handPoint);
+        item.transform.localPosition = Vector3.zero;
+        item.transform.localRotation = Quaternion.identity;
+
+        heldItem = item;
+        InventoryManager.Instance.SetHeldItem(item);
     }
 
     void ThrowItem(GameObject item)
     {
+        if (item == null) return;
+
         Rigidbody rb = item.GetComponent<Rigidbody>();
-        if (rb == null) rb = item.AddComponent<Rigidbody>();
+        if (rb == null)
+            rb = item.AddComponent<Rigidbody>();
+
         item.transform.parent = null;
         rb.isKinematic = false;
         rb.AddForce(transform.forward * throwForce, ForceMode.VelocityChange);
-    }
-
-    // Возвращаем плечо в исходное положение
-    void ResetShoulder()
-    {
-        if (shoulder != null)
-            shoulder.localEulerAngles = shoulderInitialRotation;
     }
 }

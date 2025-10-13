@@ -4,6 +4,8 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
 
+    private GameObject heldItem;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -13,8 +15,6 @@ public class InventoryManager : MonoBehaviour
         }
         Instance = this;
     }
-
-    private GameObject heldItem;
 
     public void SetHeldItem(GameObject item)
     {
