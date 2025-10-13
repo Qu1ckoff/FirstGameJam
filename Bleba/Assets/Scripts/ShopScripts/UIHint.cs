@@ -1,10 +1,11 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 public class UIHint : MonoBehaviour
 {
-    [Header("Подсказки для действий")]
-    public GameObject hintE; // Взять (E)
-    public GameObject hintQ; // Положить/Бросить (Q)
+    [Header("РџРѕРґСЃРєР°Р·РєРё РґР»СЏ РґРµР№СЃС‚РІРёР№")]
+    public GameObject hintE;
+    public GameObject hintQ;
+    public GameObject hintR; // рџ”№ РЅРѕРІР°СЏ РїРѕРґСЃРєР°Р·РєР° РґР»СЏ NPC
 
     private Camera cam;
 
@@ -14,31 +15,33 @@ public class UIHint : MonoBehaviour
         HideHint();
     }
 
-    /// <summary>
-    /// Показываем подсказку на объекте target. showE = true -> E, false -> Q
-    /// </summary>
     public void ShowHint(Transform target, bool showE)
     {
         if (target == null) return;
 
         hintE.SetActive(showE);
         hintQ.SetActive(!showE);
+        if (hintR != null) hintR.SetActive(false);
 
         Vector3 screenPos = cam.WorldToScreenPoint(target.position);
-
-        if (showE && hintE != null)
-            hintE.transform.position = screenPos;
-
-        if (!showE && hintQ != null)
-            hintQ.transform.position = screenPos;
+        if (showE && hintE) hintE.transform.position = screenPos;
+        if (!showE && hintQ) hintQ.transform.position = screenPos;
     }
 
-    /// <summary>
-    /// Скрыть все подсказки
-    /// </summary>
+    // рџ”№ РѕС‚РґРµР»СЊРЅС‹Р№ РјРµС‚РѕРґ РґР»СЏ NPC
+    public void ShowRHint(Transform target)
+    {
+        if (target == null || hintR == null) return;
+
+        HideHint();
+        hintR.SetActive(true);
+        hintR.transform.position = cam.WorldToScreenPoint(target.position);
+    }
+
     public void HideHint()
     {
         if (hintE != null) hintE.SetActive(false);
         if (hintQ != null) hintQ.SetActive(false);
+        if (hintR != null) hintR.SetActive(false);
     }
 }

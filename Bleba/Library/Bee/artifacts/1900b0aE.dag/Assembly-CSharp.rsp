@@ -374,6 +374,7 @@
 "Assets/Scripts/NPC/CustomerNPC.cs"
 "Assets/Scripts/NPC/NPCBot.cs"
 "Assets/Scripts/NPC/ShopArea.cs"
+"Assets/Scripts/NPC/SpeechBubble.cs"
 "Assets/Scripts/NPC/Waypoint.cs"
 "Assets/Scripts/Player/CarryBoxSystem.cs"
 "Assets/Scripts/Player/CinemachineMouseControl.cs"

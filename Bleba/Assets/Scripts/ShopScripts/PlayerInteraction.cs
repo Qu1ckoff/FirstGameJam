@@ -10,6 +10,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private ShelfCell lookedAtCell;
     private GameObject lookedAtItem;
+    private CustomerNPC lookedAtNPC; // 🔹
     private GameObject heldItem;
 
     void Update()
@@ -17,34 +18,34 @@ public class PlayerInteraction : MonoBehaviour
         CheckLookedAtObject();
         HandleInput();
     }
+
     void CheckLookedAtObject()
     {
         Camera cam = Camera.main;
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit[] hits = Physics.RaycastAll(ray, interactDistance, ~0, QueryTriggerInteraction.Collide);
 
-        // Сбрасываем текущие объекты
         lookedAtItem = null;
         lookedAtCell = null;
+        lookedAtNPC = null; // 🔹
         uiHint.HideHint();
 
         if (hits.Length == 0) return;
 
-        // Сортируем по расстоянию
         System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
 
-        // 1. Проверяем сначала PickupItem
+        // 1️⃣ Предмет
         foreach (var h in hits)
         {
             if (h.collider.CompareTag("PickupItem"))
             {
                 lookedAtItem = h.collider.gameObject;
-                uiHint.ShowHint(lookedAtItem.transform, true); // E — взять предмет
+                uiHint.ShowHint(lookedAtItem.transform, true);
                 return;
             }
         }
 
-        // 2. Проверяем полки
+        // 2️⃣ Полка
         foreach (var h in hits)
         {
             var shelf = h.collider.GetComponent<ShelfCell>();
@@ -53,21 +54,25 @@ public class PlayerInteraction : MonoBehaviour
                 lookedAtCell = shelf;
 
                 if (heldItem == null && shelf.currentItem != null)
-                {
-                    // Руки пусты, на полке есть предмет — показываем E
                     uiHint.ShowHint(shelf.transform, true);
-                }
                 else if (heldItem != null)
-                {
-                    // Руки заняты — показываем Q
                     uiHint.ShowHint(shelf.transform, false);
-                }
                 else
-                {
-                    // Руки пусты, полка пустая — не показываем подсказку
                     uiHint.HideHint();
-                }
 
+                return;
+            }
+        }
+
+        // 3️⃣ NPC
+        foreach (var h in hits)
+        {
+            var npc = h.collider.GetComponent<CustomerNPC>();
+            if (npc != null)
+            {
+                lookedAtNPC = npc;
+                // 🔹 показываем подсказку R
+                uiHint.ShowRHint(npc.transform);
                 return;
             }
         }
@@ -86,15 +91,12 @@ public class PlayerInteraction : MonoBehaviour
             }
             else if (lookedAtCell != null && lookedAtCell.currentItem != null)
             {
-                // Берём предмет с полки
                 heldItem = lookedAtCell.TakeItemToHand(handPoint);
-
-                // Важное исправление: очищаем ячейку сразу после взятия
                 lookedAtCell.currentItem = null;
             }
         }
 
-        // --- Положить / бросить предмет ---
+        // --- Положить / бросить ---
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if (heldItem == null) return;
@@ -109,6 +111,16 @@ public class PlayerInteraction : MonoBehaviour
                 ThrowItem(heldItem);
                 heldItem = null;
                 InventoryManager.Instance.ClearHeldItem();
+            }
+        }
+
+        // --- Отказать NPC (R) ---
+        if (Input.GetKeyDown(KeyCode.R)) // 🔹
+        {
+            if (lookedAtNPC != null)
+            {
+                lookedAtNPC.ForceLeave(); // 🔹
+                uiHint.HideHint();
             }
         }
     }
