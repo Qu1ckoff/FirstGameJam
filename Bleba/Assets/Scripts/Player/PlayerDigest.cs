@@ -137,14 +137,14 @@ public class PlayerDigest : MonoBehaviour
 
         Debug.Log($"💩 Переварено: {target.trashName}");
 
-        if (target.resultFoodPrefab != null && poopSpawnPoint != null)
+        // ✅ Новый вариант — используем SpawnResultFoods
+        if (poopSpawnPoint != null)
         {
-            Instantiate(target.resultFoodPrefab, poopSpawnPoint.position, Quaternion.identity);
-            Debug.Log($"🍔 Выкакано: {target.resultFoodPrefab.name}");
+            target.SpawnResultFoods(poopSpawnPoint.position);
         }
         else
         {
-            Debug.LogWarning($"⚠️ Не задан resultFoodPrefab или poopSpawnPoint!");
+            Debug.LogWarning("⚠️ Не задан poopSpawnPoint!");
         }
 
         currentStomach -= target.stomachLoad;
