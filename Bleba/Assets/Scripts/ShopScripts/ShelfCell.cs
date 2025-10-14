@@ -1,15 +1,22 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 public class ShelfCell : MonoBehaviour
 {
-    [Header("������� ������� � ������")]
+    [Header("Текущий предмет в ячейке")]
     public GameObject currentItem;
+
+    [Header("Ссылка на спавнер полки (автоматически подставится)")]
+    public ShopShelfSpawner parentShelf;
 
     private void Awake()
     {
         Collider col = GetComponent<Collider>();
         col.isTrigger = true;
+
+        // Автоматически находим спавнер, если не задан вручную
+        if (parentShelf == null)
+            parentShelf = GetComponentInParent<ShopShelfSpawner>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,15 +33,19 @@ public class ShelfCell : MonoBehaviour
 
             if (InventoryManager.Instance.GetHeldItem() == currentItem)
                 InventoryManager.Instance.ClearHeldItem();
+
+            // 💾 сохраняем текущее состояние полки
+            parentShelf?.SaveShelfState();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        // ���� ������� ������� �������� �������, ������� ������
+        // Если текущий предмет покидает триггер, очищаем ячейку
         if (other.gameObject == currentItem)
         {
             currentItem = null;
+            parentShelf?.SaveShelfState(); // 💾
         }
     }
 
@@ -43,7 +54,7 @@ public class ShelfCell : MonoBehaviour
         if (currentItem == null) return null;
 
         GameObject item = currentItem;
-        currentItem = null; // ������� ������ ����� ��� ������
+        currentItem = null; // очищаем ячейку сразу при взятии
 
         item.transform.SetParent(handPoint);
         item.transform.localPosition = Vector3.zero;
@@ -54,6 +65,10 @@ public class ShelfCell : MonoBehaviour
             rb.isKinematic = true;
 
         InventoryManager.Instance.SetHeldItem(item);
+
+        // 💾 сохраняем текущее состояние
+        parentShelf?.SaveShelfState();
+
         return item;
     }
 
@@ -71,6 +86,10 @@ public class ShelfCell : MonoBehaviour
             rb.isKinematic = true;
 
         InventoryManager.Instance.ClearHeldItem();
+
+        // 💾 сохраняем текущее состояние
+        parentShelf?.SaveShelfState();
+
         return true;
     }
 }

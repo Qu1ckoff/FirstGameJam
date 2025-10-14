@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -8,15 +9,24 @@ public class PlayerInteraction : MonoBehaviour
     public float throwForce = 5f;
     public UIHint uiHint;
 
+    [Header("Выход из магазина")]
+    public string citySceneName = "CityScene";
+    public float exitHoldTime = 2f;
+
+    private float exitHoldTimer = 0f;
+    private bool lookingAtExit = false;
+    private Transform exitZoneTransform;
+
     private ShelfCell lookedAtCell;
     private GameObject lookedAtItem;
-    private CustomerNPC lookedAtNPC; // 🔹
+    private CustomerNPC lookedAtNPC;
     private GameObject heldItem;
 
     void Update()
     {
         CheckLookedAtObject();
         HandleInput();
+        HandleExitProgress();
     }
 
     void CheckLookedAtObject()
@@ -27,14 +37,15 @@ public class PlayerInteraction : MonoBehaviour
 
         lookedAtItem = null;
         lookedAtCell = null;
-        lookedAtNPC = null; // 🔹
+        lookedAtNPC = null;
+        lookingAtExit = false;
+        exitZoneTransform = null;
+
         uiHint.HideHint();
 
         if (hits.Length == 0) return;
-
         System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
 
-        // 1️⃣ Предмет
         foreach (var h in hits)
         {
             if (h.collider.CompareTag("PickupItem"))
@@ -45,34 +56,41 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
 
-        // 2️⃣ Полка
         foreach (var h in hits)
         {
             var shelf = h.collider.GetComponent<ShelfCell>();
             if (shelf != null)
             {
                 lookedAtCell = shelf;
-
                 if (heldItem == null && shelf.currentItem != null)
                     uiHint.ShowHint(shelf.transform, true);
                 else if (heldItem != null)
                     uiHint.ShowHint(shelf.transform, false);
                 else
                     uiHint.HideHint();
-
                 return;
             }
         }
 
-        // 3️⃣ NPC
         foreach (var h in hits)
         {
             var npc = h.collider.GetComponent<CustomerNPC>();
             if (npc != null)
             {
                 lookedAtNPC = npc;
-                // 🔹 показываем подсказку R
                 uiHint.ShowRHint(npc.transform);
+                return;
+            }
+        }
+
+        // 🔹 Проверяем зону выхода
+        foreach (var h in hits)
+        {
+            if (h.collider.CompareTag("ExitZone"))
+            {
+                lookingAtExit = true;
+                exitZoneTransform = h.collider.transform;
+                uiHint.ShowExitHint(exitZoneTransform);
                 return;
             }
         }
@@ -80,15 +98,11 @@ public class PlayerInteraction : MonoBehaviour
 
     void HandleInput()
     {
-        // --- Взять предмет ---
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (heldItem != null) return;
-
             if (lookedAtItem != null)
-            {
                 PickupItemDirectly(lookedAtItem);
-            }
             else if (lookedAtCell != null && lookedAtCell.currentItem != null)
             {
                 heldItem = lookedAtCell.TakeItemToHand(handPoint);
@@ -96,7 +110,6 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
 
-        // --- Положить / бросить ---
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if (heldItem == null) return;
@@ -114,14 +127,39 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
 
-        // --- Отказать NPC (R) ---
-        if (Input.GetKeyDown(KeyCode.R)) // 🔹
+        if (Input.GetKeyDown(KeyCode.R))
         {
             if (lookedAtNPC != null)
             {
-                lookedAtNPC.ForceLeave(); // 🔹
+                lookedAtNPC.ForceLeave();
                 uiHint.HideHint();
             }
+        }
+    }
+
+    void HandleExitProgress()
+    {
+        if (!lookingAtExit)
+        {
+            exitHoldTimer = 0f;
+            uiHint.UpdateExitProgress(0f);
+            return;
+        }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            exitHoldTimer += Time.deltaTime;
+            uiHint.UpdateExitProgress(exitHoldTimer / exitHoldTime);
+
+            if (exitHoldTimer >= exitHoldTime)
+            {
+                SceneManager.LoadScene(citySceneName);
+            }
+        }
+        else
+        {
+            exitHoldTimer = 0f;
+            uiHint.UpdateExitProgress(0f);
         }
     }
 

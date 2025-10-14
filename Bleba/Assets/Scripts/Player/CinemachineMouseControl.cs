@@ -28,8 +28,8 @@ public class CinemachineMouseControl : MonoBehaviour
         if (pov == null) return;
 
         // ¬сегда активное управление камерой
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity * 0.1f;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity * 0.1f;
+        float mouseX = Input.GetAxis("Mouse X") * sensitivity * 1f;
+        float mouseY = Input.GetAxis("Mouse Y") * sensitivity * 1f;
 
         pov.m_HorizontalAxis.Value += mouseX;
         pov.m_VerticalAxis.Value -= mouseY; // инвертируем ось Y, чтобы было привычно

@@ -360,6 +360,7 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.62f2/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.62f2/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/GameManager/GameManager.cs"
+"Assets/Scripts/GameManager/GlobalTimeManager.cs"
 "Assets/Scripts/GameManager/SceneTeleport.cs"
 "Assets/Scripts/Inventory/BoxInventoryUI.cs"
 "Assets/Scripts/Inventory/BoxPromptUI.cs"
