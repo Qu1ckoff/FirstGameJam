@@ -366,6 +366,7 @@
 "Assets/Scripts/Inventory/BoxPromptUI.cs"
 "Assets/Scripts/Inventory/CarryBox.cs"
 "Assets/Scripts/Inventory/CarryIndicatorUI.cs"
+"Assets/Scripts/Inventory/GarbageSpawner.cs"
 "Assets/Scripts/Inventory/PickupItem.cs"
 "Assets/Scripts/Inventory/PickupPromptUI.cs"
 "Assets/Scripts/Inventory/ProductID.cs"

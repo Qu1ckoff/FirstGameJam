@@ -3,7 +3,12 @@ guid: 1ea5ba47279dbaf49a104d927bc92152
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shava
+    second: {fileID: 2100000, guid: 7b15b0d24a51f1540ac9cc27296f03e1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
