@@ -34,10 +34,11 @@ public class ShelfCell : MonoBehaviour
             if (InventoryManager.Instance.GetHeldItem() == currentItem)
                 InventoryManager.Instance.ClearHeldItem();
 
-            // 💾 сохраняем текущее состояние полки
-            parentShelf?.SaveShelfState();
+            // ❌ убираем автосейв — он мешает при спавне
+            // parentShelf?.SaveShelfState();
         }
     }
+
 
     private void OnTriggerExit(Collider other)
     {

@@ -124,15 +124,20 @@ public class ProductReceiver : MonoBehaviour
         if (fillText != null)
             fillText.text = $"{storedProducts.Count}/{maxSlots}";
     }
-
     public List<string> GetStoredProductIDs()
     {
         List<string> ids = new List<string>();
+
+        // Очищаем список от уничтоженных объектов
+        storedProducts.RemoveAll(p => p == null);
+
         foreach (var p in storedProducts)
         {
+            if (p == null) continue; // на всякий случай ещё проверим
             var pid = p.GetComponent<ProductID>();
             if (pid != null) ids.Add(pid.id);
         }
+
         return ids;
     }
 
@@ -147,8 +152,25 @@ public class ProductReceiver : MonoBehaviour
             AddProduct(other.gameObject);
     }
 
-    void OnApplicationQuit()
+    private bool hasSaved = false;
+
+    private void OnDisable()
     {
+        AutoSave();
+    }
+
+    private void OnApplicationQuit()
+    {
+        AutoSave();
+    }
+
+    private void AutoSave()
+    {
+        if (hasSaved) return;
+        hasSaved = true;
+
+        Debug.Log("💾 Автосохранение ProductReceiver при выходе/смене сцены...");
         SaveProgress();
     }
+
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerInteraction : MonoBehaviour
@@ -83,7 +84,6 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
 
-        // 🔹 Проверяем зону выхода
         foreach (var h in hits)
         {
             if (h.collider.CompareTag("ExitZone"))
@@ -153,6 +153,18 @@ public class PlayerInteraction : MonoBehaviour
 
             if (exitHoldTimer >= exitHoldTime)
             {
+                var shelfSpawner = FindObjectOfType<ShopShelfSpawner>();
+                if (shelfSpawner != null)
+                {
+                    // 💡 Устанавливаем флаг, чтобы OnDisable не сделал пустое автосохранение
+                    ShopShelfSpawner.isExitingScene = true;
+
+                    List<string> products = shelfSpawner.GetShelfProductIDs();
+                    ShopSaveManager.Save(products);
+                    ShopData.productsToSell = new List<string>(products);
+                    Debug.Log($"🛒➡️🏙️ Сохранили {products.Count} продуктов с полок перед выходом из магазина");
+                }
+
                 SceneManager.LoadScene(citySceneName);
             }
         }

@@ -220,4 +220,25 @@ public class PlayerPickupSystem : MonoBehaviour
         string rightID = rightItem != null ? rightItem.GetComponent<ProductID>()?.id : "";
         PlayerSaveManager.Save(transform.position, transform.rotation, leftID, rightID);
     }
+    private void OnDisable()
+    {
+        // 💾 Сохраняем, если сцена выгружается (не при выключении игры)
+        if (!ShopShelfSpawner.isExitingScene) // если используешь глобальный флаг выхода
+        {
+            string leftID = leftItem != null ? leftItem.GetComponent<ProductID>()?.id : "";
+            string rightID = rightItem != null ? rightItem.GetComponent<ProductID>()?.id : "";
+            PlayerSaveManager.Save(transform.position, transform.rotation, leftID, rightID);
+            Debug.Log($"💾 PlayerPickupSystem: Сохранены предметы [{leftID}, {rightID}] при выгрузке сцены");
+        }
+    }
+    public string GetLeftItemID()
+    {
+        return leftItem != null ? leftItem.GetComponent<ProductID>()?.id : "";
+    }
+
+    public string GetRightItemID()
+    {
+        return rightItem != null ? rightItem.GetComponent<ProductID>()?.id : "";
+    }
+
 }

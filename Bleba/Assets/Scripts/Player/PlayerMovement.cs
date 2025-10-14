@@ -160,4 +160,16 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    void OnDisable()
+    {
+        // 💾 Сохраняем данные игрока при выгрузке сцены
+        if (!ShopShelfSpawner.isExitingScene) // если используешь общий флаг выхода
+        {
+            PlayerSaveManager.Save(
+                transform.position,
+                transform.rotation,
+                "", "" // можно добавить сюда ID предметов в руках, если нужно
+            );
+        }
+    }
 }

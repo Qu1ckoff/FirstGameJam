@@ -292,9 +292,26 @@ public class CarryBox : MonoBehaviour
             AddItem(other.gameObject);
         }
     }
+    private bool hasSaved = false;
 
-    void OnApplicationQuit()
+    private void OnDisable()
     {
+        // Срабатывает при смене сцены или уничтожении объекта
+        AutoSave();
+    }
+
+    private void OnApplicationQuit()
+    {
+        // Срабатывает при закрытии игры
+        AutoSave();
+    }
+
+    private void AutoSave()
+    {
+        if (hasSaved) return; // чтобы не сохранить дважды
+        hasSaved = true;
+
+        Debug.Log("💾 Автосохранение CarryBox при выходе/смене сцены...");
         SaveBoxProgress();
     }
 }

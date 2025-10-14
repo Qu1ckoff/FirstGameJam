@@ -1,7 +1,8 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenuCanvas;
     public GameObject saveMessageCanvas;
     public GameObject menuCanvas;
+    public GameObject pauseMenuToDisableInShop;
 
     private bool isPaused = false;
     private bool isTransitioning = false;
@@ -99,11 +101,15 @@ public class GameManager : MonoBehaviour
 
     private void UpdateMenuCanvas()
     {
-        bool isMainMenu = SceneManager.GetActiveScene().name == "MainMenu";
+        string currentScene = SceneManager.GetActiveScene().name;
+        bool isMainMenu = currentScene == "MainMenu";
+        bool isShopScene = currentScene == "ShopScene"; // ⚠️ Название сцены магазина
 
+        // 🔹 Показываем или скрываем меню
         if (menuCanvas != null)
             menuCanvas.SetActive(isMainMenu);
 
+        // 🔹 Настраиваем курсор
         if (isMainMenu)
         {
             Time.timeScale = 1f;
@@ -115,7 +121,17 @@ public class GameManager : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
+
+        // 🔹 Управляем кнопкой "В меню" (или другим элементом)
+        if (pauseMenuToDisableInShop != null)
+        {
+            if (isShopScene)
+                pauseMenuToDisableInShop.SetActive(false);
+            else
+                pauseMenuToDisableInShop.SetActive(true);
+        }
     }
+
 
     private void HandlePersistentUIDuplicates()
     {
@@ -208,11 +224,19 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        // 🔹 Сохраняем полные данные игрока
+        var leftItem = player.GetComponent<PlayerPickupSystem>()?.GetLeftItemID();
+        var rightItem = player.GetComponent<PlayerPickupSystem>()?.GetRightItemID();
+        PlayerSaveManager.Save(player.transform.position, player.transform.rotation, leftItem, rightItem);
+
+        // 🔹 Сохраняем общие данные сцены
         GameData data = new GameData(SceneManager.GetActiveScene().name, player.transform.position);
         SaveSystem.Save(data);
-        Debug.Log("💾 Игра сохранена!");
+
+        Debug.Log($"💾 Сохранена игра: {SceneManager.GetActiveScene().name}, позиция {player.transform.position}");
         ShowSaveMessage();
     }
+
 
     private void ShowSaveMessage()
     {
@@ -242,16 +266,19 @@ public class GameManager : MonoBehaviour
     public void StartGame() => LoadScene("GameScene");
     public void LoadMainMenu()
     {
+        SaveGame(); // 💾 Сохраняем перед выходом
         if (pauseMenuCanvas != null)
             pauseMenuCanvas.SetActive(false);
         LoadScene("MainMenu");
     }
+
     public void QuitGame() => Application.Quit();
     public void LoadScene(string sceneName)
     {
         if (!isTransitioning)
             StartCoroutine(LoadSceneGeneric(sceneName));
     }
+
     public void LoadGame()
     {
         GameData data = SaveSystem.Load();
@@ -269,12 +296,22 @@ public class GameManager : MonoBehaviour
     {
         isTransitioning = true;
 
+        // 🔹 Сохраняем данные игрока перед переходом
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            var leftItem = player.GetComponent<PlayerPickupSystem>()?.GetLeftItemID();
+            var rightItem = player.GetComponent<PlayerPickupSystem>()?.GetRightItemID();
+            PlayerSaveManager.Save(player.transform.position, player.transform.rotation, leftItem, rightItem);
+        }
+
         // 1️⃣ Показываем экран загрузки
         if (fadeCanvas != null)
         {
             fadeCanvas.alpha = 1;
             fadeCanvas.blocksRaycasts = true;
         }
+
         if (loadingText != null)
         {
             loadingText.gameObject.SetActive(true);
@@ -285,42 +322,46 @@ public class GameManager : MonoBehaviour
 
         yield return null;
 
-        // 2️⃣ Загружаем сцену
+        // 2️⃣ Загружаем сцену асинхронно
         AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
         op.allowSceneActivation = false;
+
         while (op.progress < 0.9f)
             yield return null;
+
         op.allowSceneActivation = true;
         while (!op.isDone)
             yield return null;
 
-        // 3️⃣ После полной загрузки
+        // 3️⃣ После загрузки настраиваем UI
         EnsureEventSystem();
         HandlePersistentUIDuplicates();
         UpdateMenuCanvas();
         if (sceneName != "MainMenu")
             ResetPauseState();
 
-        // 4️⃣ Перемещаем игрока, если нужно
+        // 4️⃣ Восстанавливаем позицию игрока, если есть данные
         if (playerPos.HasValue)
         {
             yield return null;
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player = GameObject.FindGameObjectWithTag("Player");
             if (player != null)
                 player.transform.position = playerPos.Value;
         }
 
-        // 5️⃣ Ждём секунду, затем затухаем
+        // 5️⃣ Завершаем загрузку — убираем экран и анимацию
         yield return new WaitForSecondsRealtime(1f);
+
         if (loadingDotsCoroutine != null)
         {
             StopCoroutine(loadingDotsCoroutine);
             loadingDotsCoroutine = null;
         }
+
         if (loadingText != null)
             loadingText.gameObject.SetActive(false);
 
-        // 6️⃣ Плавное исчезновение
+        // 6️⃣ Плавное исчезновение фейда
         float t = 0f;
         while (t < fadeDuration)
         {

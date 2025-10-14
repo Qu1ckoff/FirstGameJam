@@ -67,21 +67,25 @@ public class SceneTeleport : MonoBehaviour
         var receiver = FindObjectOfType<ProductReceiver>();
         var shelfSpawner = FindObjectOfType<ShopShelfSpawner>();
 
-        List<string> allProducts = new List<string>();
+        List<string> allProductsForSave = new List<string>();
+        List<string> productsForShop = new List<string>();
 
         if (receiver != null)
-            allProducts.AddRange(receiver.GetStoredProductIDs());
+        {
+            productsForShop = receiver.GetStoredProductIDs();
+            allProductsForSave.AddRange(productsForShop);
+        }
 
         if (shelfSpawner != null)
-            allProducts.AddRange(shelfSpawner.GetShelfProductIDs());
+            allProductsForSave.AddRange(shelfSpawner.GetShelfProductIDs());
 
-        // Сохраняем весь список в JSON
-        ShopSaveManager.Save(allProducts);
+        // 💾 Сохраняем всё в JSON для приёмника (чтобы вернувшись в город, восстановились объекты)
+        ShopSaveManager.Save(allProductsForSave);
 
-        // Передаем только продукты из приёмника в магазин для спавна
-        ShopData.productsToSell = receiver != null ? new List<string>(receiver.GetStoredProductIDs()) : new List<string>();
+        // 💡 Для магазина используем только продукты приёмника
+        ShopData.productsToSell = new List<string>(productsForShop);
 
-        Debug.Log($"📦 Приёмник и полки сохранены перед телепортом: {allProducts.Count} продуктов всего");
+        Debug.Log($"📦 Сохранили приёмник и полки перед телепортом: {allProductsForSave.Count} продуктов всего");
     }
 
     private void OnTriggerEnter(Collider other)
