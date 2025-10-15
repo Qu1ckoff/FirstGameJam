@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
@@ -6,34 +6,37 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent), typeof(Collider))]
 public class CustomerNPC : MonoBehaviour
 {
-    [Header("Настройки NPC")]
+    [Header("РќР°СЃС‚СЂРѕР№РєРё NPC")]
     public List<string> productList;
     public Transform counterPoint;
     public Transform exitPoint;
     public float waitTimeAtCounter = 10f;
 
-    [Header("Фразы NPC (списки вариантов)")]
-    [Tooltip("Варианты запроса: пример — 'Можно мне {0}?', 'Дайте {0}, пожалуйста', 'Хочу {0}'")]
+    [Header("Р¤СЂР°Р·С‹ NPC (СЃРїРёСЃРєРё РІР°СЂРёР°РЅС‚РѕРІ)")]
     public List<string> requestPhrases = new List<string>();
-
-    [Tooltip("Варианты благодарности при правильном товаре")]
     public List<string> correctPhrases = new List<string>();
-
-    [Tooltip("Варианты фраз при неправильном товаре")]
     public List<string> wrongPhrases = new List<string>();
-
-    [Tooltip("Варианты фраз при уходе без покупки")]
     public List<string> leavePhrases = new List<string>();
 
-    [Header("Поведение")]
-    public float responseDisplayTime = 2f; // сколько держать ответную фразу перед уходом
-    public float arriveDistance = 1f;      // дистанция считая что пришёл к прилавку
+    [Header("Р—РІСѓРєРё Рё СЌС„С„РµРєС‚С‹")]
+    [Tooltip("Р—РІСѓРє, РµСЃР»Рё NPC РґРѕРІРѕР»РµРЅ РїРѕРєСѓРїРєРѕР№")]
+    public AudioClip happySound;
+
+    [Tooltip("Р—РІСѓРє, РµСЃР»Рё NPC РЅРµРґРѕРІРѕР»РµРЅ (РґР°Р»Рё РЅРµ С‚Рѕ)")]
+    public AudioClip angrySound;
+
+    [Tooltip("РСЃС‚РѕС‡РЅРёРє Р·РІСѓРєР° (РµСЃР»Рё РЅРµ СѓРєР°Р·Р°РЅ, СЃРѕР·РґР°С‘С‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё)")]
+    public AudioSource audioSource;
+
+    [Header("РџРѕРІРµРґРµРЅРёРµ")]
+    public float responseDisplayTime = 2f;
+    public float arriveDistance = 1f;
 
     private NavMeshAgent agent;
     public string wantedProduct;
     private bool receivedItem = false;
     private bool waiting = false;
-    private bool requestShown = false;     // показывали ли запрос уже
+    private bool requestShown = false;
 
     private SpeechBubble bubble;
 
@@ -41,6 +44,16 @@ public class CustomerNPC : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         bubble = GetComponentInChildren<SpeechBubble>();
+
+        // Р•СЃР»Рё РёСЃС‚РѕС‡РЅРёРєР° РЅРµС‚ вЂ” СЃРѕР·РґР°С‘Рј
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+            audioSource.spatialBlend = 1f; // 3D-Р·РІСѓРє
+            audioSource.maxDistance = 10f;
+        }
+
         PickRandomProduct();
         GoToCounter();
     }
@@ -49,13 +62,12 @@ public class CustomerNPC : MonoBehaviour
     {
         if (productList == null || productList.Count == 0)
         {
-            Debug.LogWarning("У NPC пустой список продуктов!");
+            Debug.LogWarning("РЈ NPC РїСѓСЃС‚РѕР№ СЃРїРёСЃРѕРє РїСЂРѕРґСѓРєС‚РѕРІ!");
             wantedProduct = "";
             return;
         }
 
         wantedProduct = productList[Random.Range(0, productList.Count)];
-        // запрос показываем только когда придёт к стойке
     }
 
     void GoToCounter()
@@ -79,7 +91,7 @@ public class CustomerNPC : MonoBehaviour
     {
         if (string.IsNullOrEmpty(wantedProduct)) return;
 
-        string phraseTemplate = GetRandomPhrase(requestPhrases, "Можно мне {0}?");
+        string phraseTemplate = GetRandomPhrase(requestPhrases, "РњРѕР¶РЅРѕ РјРЅРµ {0}?");
         string phrase = string.Format(phraseTemplate, wantedProduct);
 
         if (bubble != null) bubble.ShowPhrase(phrase, 0f);
@@ -97,7 +109,7 @@ public class CustomerNPC : MonoBehaviour
 
         if (!receivedItem)
         {
-            string phrase = GetRandomPhrase(leavePhrases, "Что за магазины пошли, ужас!");
+            string phrase = GetRandomPhrase(leavePhrases, "Р§С‚Рѕ Р·Р° РјР°РіР°Р·РёРЅС‹ РїРѕС€Р»Рё, СѓР¶Р°СЃ!");
             if (bubble != null) bubble.ShowPhrase(phrase, responseDisplayTime);
             else Debug.Log(phrase);
 
@@ -135,20 +147,29 @@ public class CustomerNPC : MonoBehaviour
         {
             receivedItem = true;
 
-            string phrase = GetRandomPhrase(correctPhrases, "Спасибо!");
+            string phrase = GetRandomPhrase(correctPhrases, "РЎРїР°СЃРёР±Рѕ!");
             if (bubble != null) bubble.ShowPhrase(phrase, responseDisplayTime);
             else Debug.Log(phrase);
 
+            // рџ’° Р’С‹РґР°С‘Рј РёРіСЂРѕРєСѓ РґРµРЅСЊРіРё
             MoneyManager.Instance.AddMoney(product.cost);
-            Destroy(other.gameObject);
 
+            // рџЋµ РџСЂРѕРёРіСЂС‹РІР°РµРј РґРѕРІРѕР»СЊРЅС‹Р№ Р·РІСѓРє
+            if (happySound != null)
+                audioSource.PlayOneShot(happySound);
+
+            Destroy(other.gameObject);
             StartCoroutine(DelayedExitAfterResponse());
         }
         else
         {
-            string phrase = GetRandomPhrase(wrongPhrases, "Это не то, что мне нужно!");
+            string phrase = GetRandomPhrase(wrongPhrases, "Р­С‚Рѕ РЅРµ С‚Рѕ, С‡С‚Рѕ РјРЅРµ РЅСѓР¶РЅРѕ!");
             if (bubble != null) bubble.ShowPhrase(phrase, responseDisplayTime);
             else Debug.Log(phrase);
+
+            // рџЎ Р—РІСѓРє РЅРµРґРѕРІРѕР»СЊСЃС‚РІР°
+            if (angrySound != null)
+                audioSource.PlayOneShot(angrySound);
 
             Destroy(other.gameObject);
         }
@@ -165,9 +186,13 @@ public class CustomerNPC : MonoBehaviour
         if (receivedItem) return;
 
         receivedItem = true;
-        string phrase = GetRandomPhrase(leavePhrases, "Что за магазины пошли, ужас!");
+        string phrase = GetRandomPhrase(leavePhrases, "Р§С‚Рѕ Р·Р° РјР°РіР°Р·РёРЅС‹ РїРѕС€Р»Рё, СѓР¶Р°СЃ!");
         if (bubble != null) bubble.ShowPhrase(phrase, responseDisplayTime);
         else Debug.Log(phrase);
+
+        // рџЎ Р—РІСѓРє РЅРµРґРѕРІРѕР»СЊСЃС‚РІР°
+        if (angrySound != null)
+            audioSource.PlayOneShot(angrySound);
 
         if (exitPoint != null)
             transform.rotation = Quaternion.LookRotation((exitPoint.position - transform.position).normalized);
@@ -175,7 +200,6 @@ public class CustomerNPC : MonoBehaviour
         StartCoroutine(DelayedExitAfterResponse());
     }
 
-    // Выбирает случайную фразу из списка, либо возвращает дефолтную
     private string GetRandomPhrase(List<string> list, string fallback)
     {
         if (list != null && list.Count > 0)

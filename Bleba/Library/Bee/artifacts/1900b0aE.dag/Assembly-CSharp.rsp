@@ -397,6 +397,7 @@
 "Assets/Scripts/Saves/ShopData.cs"
 "Assets/Scripts/Saves/ShopSaveManager.cs"
 "Assets/Scripts/ShopScripts/InventoryManager.cs"
+"Assets/Scripts/ShopScripts/PawnShop.cs"
 "Assets/Scripts/ShopScripts/PlayerCameraController.cs"
 "Assets/Scripts/ShopScripts/PlayerInteraction.cs"
 "Assets/Scripts/ShopScripts/ShelfCell.cs"

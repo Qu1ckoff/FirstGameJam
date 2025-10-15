@@ -15,6 +15,8 @@ public static class CarryBoxSaveManager
     private static string savePath => Path.Combine(Application.persistentDataPath, "carrybox.json");
     private static CarryBoxSaveData data = new CarryBoxSaveData();
 
+    public static bool HasSave => File.Exists(savePath);
+
     public static void Load()
     {
         if (!File.Exists(savePath))
@@ -74,6 +76,10 @@ public class CarryBox : MonoBehaviour
     public List<ProductReceiver.ProductEntry> itemPrefabs;
     private Dictionary<string, GameObject> prefabDict = new Dictionary<string, GameObject>();
 
+    [Header("Стартовая позиция (если нет сохранения)")]
+    public Vector3 startPosition = Vector3.zero;
+    public Vector3 startRotation = Vector3.zero;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -85,7 +91,7 @@ public class CarryBox : MonoBehaviour
                 prefabDict.Add(entry.id, entry.prefab);
         }
 
-        // Загружаем предметы из сохранения и позицию
+        // Загружаем предметы и позицию
         CarryBoxSaveManager.Load();
         LoadItemsFromSave();
     }
@@ -104,9 +110,18 @@ public class CarryBox : MonoBehaviour
     {
         storedItems.Clear();
 
-        // Восстановление позиции и вращения
-        transform.position = CarryBoxSaveManager.GetPosition();
-        transform.rotation = CarryBoxSaveManager.GetRotation();
+        // Если сохранения нет — используем стартовую позицию
+        if (!CarryBoxSaveManager.HasSave || CarryBoxSaveManager.GetPosition() == Vector3.zero)
+        {
+            transform.position = startPosition;
+            transform.rotation = Quaternion.Euler(startRotation);
+            Debug.Log($"🧺 CarryBox установлена в стартовую позицию {startPosition}");
+        }
+        else
+        {
+            transform.position = CarryBoxSaveManager.GetPosition();
+            transform.rotation = CarryBoxSaveManager.GetRotation();
+        }
 
         foreach (string id in CarryBoxSaveManager.GetItemIDs())
         {
@@ -151,6 +166,7 @@ public class CarryBox : MonoBehaviour
         Debug.Log($"🟢 {item.name} помещён в коробку ({storedItems.Count}/{capacity})");
         return true;
     }
+
     public void TakeItem()
     {
         if (storedItems.Count == 0)
@@ -170,19 +186,18 @@ public class CarryBox : MonoBehaviour
             rbItem.detectCollisions = true;
         }
 
-        // Спавн предмета чуть в стороне от коробки, чтобы не засосало обратно
         Vector3 spawnOffset = transform.forward * 1f + transform.right * 0.5f + Vector3.up * 0.5f;
         Vector3 spawnPos = itemSpawnPoint != null ? itemSpawnPoint.position + spawnOffset : transform.position + spawnOffset;
         item.transform.position = spawnPos;
 
-        // небольшой импульс, чтобы предмет "вылетел"
         if (rbItem != null)
             rbItem.AddForce(transform.forward * 0.5f + Vector3.up * 0.5f, ForceMode.Impulse);
 
         UpdateUI();
         SaveBoxProgress();
-        Debug.Log($"🔵 {item.name} извлечён из коробки ({storedItems.Count}/{capacity})");
+        Debug.Log($"🔵 {item.name} извлечён ({storedItems.Count}/{capacity})");
     }
+
     public void SaveBoxProgress()
     {
         List<string> ids = new List<string>();
@@ -292,23 +307,15 @@ public class CarryBox : MonoBehaviour
             AddItem(other.gameObject);
         }
     }
+
     private bool hasSaved = false;
 
-    private void OnDisable()
-    {
-        // Срабатывает при смене сцены или уничтожении объекта
-        AutoSave();
-    }
-
-    private void OnApplicationQuit()
-    {
-        // Срабатывает при закрытии игры
-        AutoSave();
-    }
+    private void OnDisable() => AutoSave();
+    private void OnApplicationQuit() => AutoSave();
 
     private void AutoSave()
     {
-        if (hasSaved) return; // чтобы не сохранить дважды
+        if (hasSaved) return;
         hasSaved = true;
 
         Debug.Log("💾 Автосохранение CarryBox при выходе/смене сцены...");

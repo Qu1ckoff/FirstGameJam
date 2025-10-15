@@ -19,7 +19,11 @@ public class PlayerMovement : MonoBehaviour
     public Image staminaFill;
 
     [Header("References")]
-    public Transform cameraTransform; // 🔹 ссылка на камеру
+    public Transform cameraTransform;
+
+    [Header("Start Position (если нет сохранения)")]
+    public Vector3 startPosition = Vector3.zero;
+    public Vector3 startRotation = Vector3.zero;
 
     private float currentStamina;
     private float staminaTimer;
@@ -40,11 +44,23 @@ public class PlayerMovement : MonoBehaviour
         if (cameraTransform == null && Camera.main != null)
             cameraTransform = Camera.main.transform;
 
-        // Загружаем позицию игрока
+        // 🧭 Загружаем сохранённую позицию игрока
         PlayerSaveManager.Load();
         var pdata = PlayerSaveManager.GetData();
-        transform.position = pdata.position;
-        transform.rotation = pdata.rotation;
+
+        // Если сохранения нет — ставим игрока в заданное стартовое положение
+        if (pdata == null || pdata.position == Vector3.zero && pdata.rotation == Quaternion.identity)
+        {
+            transform.position = startPosition;
+            transform.rotation = Quaternion.Euler(startRotation);
+            Debug.Log($"🧍 Игрок стартует с позиции {startPosition}");
+        }
+        else
+        {
+            transform.position = pdata.position;
+            transform.rotation = pdata.rotation;
+            Debug.Log($"📦 Игрок восстановлен из сохранения: {pdata.position}");
+        }
     }
 
     void Update()
@@ -66,17 +82,14 @@ public class PlayerMovement : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
-        // 🔹 движение в локальных координатах камеры
         Vector3 camForward = cameraTransform.forward;
         Vector3 camRight = cameraTransform.right;
 
-        // убираем влияние наклона камеры по вертикали
         camForward.y = 0f;
         camRight.y = 0f;
         camForward.Normalize();
         camRight.Normalize();
 
-        // направление движения = вперёд камеры * W/S + вправо камеры * A/D
         moveDirection = (camForward * v + camRight * h).normalized;
     }
 
@@ -128,19 +141,14 @@ public class PlayerMovement : MonoBehaviour
 
             if (staminaFill != null)
             {
-                // создаём градиент от голубого -> жёлтого -> красного
                 Color low = Color.red;
                 Color mid = Color.yellow;
                 Color high = new Color(0f, 0.7f, 1f);
 
                 if (percent > 0.5f)
-                {
                     staminaFill.color = Color.Lerp(mid, high, (percent - 0.5f) * 2f);
-                }
                 else
-                {
                     staminaFill.color = Color.Lerp(low, mid, percent * 2f);
-                }
             }
         }
     }
@@ -150,26 +158,17 @@ public class PlayerMovement : MonoBehaviour
         if (staminaSlider != null)
         {
             GameObject slider = staminaSlider.gameObject;
-            if (currentStamina == maxStamina)
-            {
-                slider.SetActive(false);
-            }
-            else
-            {
-                slider.SetActive(true);
-            }
+            slider.SetActive(currentStamina < maxStamina);
         }
     }
+
     void OnDisable()
     {
-        // 💾 Сохраняем данные игрока при выгрузке сцены
-        if (!ShopShelfSpawner.isExitingScene) // если используешь общий флаг выхода
-        {
-            PlayerSaveManager.Save(
-                transform.position,
-                transform.rotation,
-                "", "" // можно добавить сюда ID предметов в руках, если нужно
-            );
-        }
+        // 💾 Сохраняем позицию при выходе
+        PlayerSaveManager.Save(
+            transform.position,
+            transform.rotation,
+            "", ""
+        );
     }
 }
