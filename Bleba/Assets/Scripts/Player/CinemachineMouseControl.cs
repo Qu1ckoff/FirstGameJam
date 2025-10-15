@@ -1,4 +1,4 @@
-using Cinemachine;
+п»їusing Cinemachine;
 using UnityEngine;
 
 public class CinemachineMouseControl : MonoBehaviour
@@ -6,10 +6,10 @@ public class CinemachineMouseControl : MonoBehaviour
     private CinemachineVirtualCamera vcam;
     private CinemachinePOV pov;
 
-    [Header("Настройки чувствительности камеры")]
+    [Header("РќР°СЃС‚СЂРѕР№РєРё С‡СѓРІСЃС‚РІРёС‚РµР»СЊРЅРѕСЃС‚Рё РєР°РјРµСЂС‹")]
     [Range(0.1f, 10f)] public float sensitivity = 1.25f;
 
-    [Header("Ограничения по углам (опционально)")]
+    [Header("РћРіСЂР°РЅРёС‡РµРЅРёСЏ РїРѕ СѓРіР»Р°Рј (РѕРїС†РёРѕРЅР°Р»СЊРЅРѕ)")]
     public bool clampVertical = true;
     public float minVerticalAngle = -40f;
     public float maxVerticalAngle = 70f;
@@ -27,23 +27,23 @@ public class CinemachineMouseControl : MonoBehaviour
     {
         if (pov == null) return;
 
-        // Всегда активное управление камерой
+        // Р’СЃРµРіРґР° Р°РєС‚РёРІРЅРѕРµ СѓРїСЂР°РІР»РµРЅРёРµ РєР°РјРµСЂРѕР№
         float mouseX = Input.GetAxis("Mouse X") * sensitivity * 1f;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity * 1f;
 
         pov.m_HorizontalAxis.Value += mouseX;
-        pov.m_VerticalAxis.Value -= mouseY; // инвертируем ось Y, чтобы было привычно
+        pov.m_VerticalAxis.Value -= mouseY; // РёРЅРІРµСЂС‚РёСЂСѓРµРј РѕСЃСЊ Y, С‡С‚РѕР±С‹ Р±С‹Р»Рѕ РїСЂРёРІС‹С‡РЅРѕ
 
         if (clampVertical)
         {
             pov.m_VerticalAxis.Value = Mathf.Clamp(pov.m_VerticalAxis.Value, minVerticalAngle, maxVerticalAngle);
         }
 
-        // Убедимся, что скорость не ограничена
+        // РЈР±РµРґРёРјСЃСЏ, С‡С‚Рѕ СЃРєРѕСЂРѕСЃС‚СЊ РЅРµ РѕРіСЂР°РЅРёС‡РµРЅР°
         pov.m_HorizontalAxis.m_MaxSpeed = 300f;
         pov.m_VerticalAxis.m_MaxSpeed = 300f;
 
-        // Если игрок открыл меню (например, Time.timeScale == 0), возвращаем курсор
+        // Р•СЃР»Рё РёРіСЂРѕРє РѕС‚РєСЂС‹Р» РјРµРЅСЋ (РЅР°РїСЂРёРјРµСЂ, Time.timeScale == 0), РІРѕР·РІСЂР°С‰Р°РµРј РєСѓСЂСЃРѕСЂ
         if (Time.timeScale == 0)
         {
             Cursor.lockState = CursorLockMode.None;

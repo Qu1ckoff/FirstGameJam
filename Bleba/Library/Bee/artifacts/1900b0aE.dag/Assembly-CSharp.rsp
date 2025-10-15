@@ -372,6 +372,7 @@
 "Assets/Scripts/Inventory/ProductID.cs"
 "Assets/Scripts/Inventory/ProductReceiver.cs"
 "Assets/Scripts/Inventory/ShopShelfSpawner.cs"
+"Assets/Scripts/Inventory/SlotMachine.cs"
 "Assets/Scripts/NPC/CustomerManager.cs"
 "Assets/Scripts/NPC/CustomerNPC.cs"
 "Assets/Scripts/NPC/NPCBot.cs"

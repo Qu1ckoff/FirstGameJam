@@ -7,19 +7,35 @@ public class PlayerDigest : MonoBehaviour
     [Header("Digest System")]
     public float stomachCapacity = 100f;
     [SerializeField] private float currentStomach = 0f;
-    public float CurrentStomach => currentStomach; // 👈 для UI
+    public float CurrentStomach => currentStomach;
     public Transform poopSpawnPoint;
     public KeyCode eatKey = KeyCode.E;
 
     [Header("Detection Settings")]
-    public float detectionRadius = 1.5f;   // радиус области проверки
-    public float detectionDistance = 1.5f; // насколько далеко перед собой
-    public LayerMask detectionMask;        // слой для мусора (можно оставить Default)
+    public float detectionRadius = 1.5f;
+    public float detectionDistance = 1.5f;
+    public LayerMask detectionMask;
+
+    [Header("Аудио эффекты")]
+    public AudioClip eatSound;
+    public AudioClip poopSound;
+    public AudioClip fullStomachSound;
+    private AudioSource audioSource;
+
+    [Header("💨 Визуальные эффекты")]
+    public GameObject fartEffectPrefab; // 🔥 сюда можно назначить эффект пука (ParticleSystem)
+    public float fartEffectLifetime = 3f; // время жизни эффекта
 
     private bool isEating = false;
     private Eatable currentTarget;
-
     private List<Coroutine> digestionQueue = new List<Coroutine>();
+
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -115,6 +131,7 @@ public class PlayerDigest : MonoBehaviour
         if (currentStomach + target.stomachLoad > stomachCapacity)
         {
             Debug.Log("⚠️ Желудок переполнен!");
+            PlaySound(fullStomachSound);
             return;
         }
 
@@ -122,11 +139,12 @@ public class PlayerDigest : MonoBehaviour
         currentStomach += target.stomachLoad;
         target.canBeEaten = false;
 
+        PlaySound(eatSound);
+
         Destroy(target.gameObject);
         Debug.Log($"🗑️ {target.trashName} удалён со сцены");
 
         Debug.Log($"🤢 Начинается переваривание {target.trashName} ({target.digestionTime} сек)");
-
         Coroutine digestion = StartCoroutine(DigestRoutine(target));
         digestionQueue.Add(digestion);
     }
@@ -137,10 +155,18 @@ public class PlayerDigest : MonoBehaviour
 
         Debug.Log($"💩 Переварено: {target.trashName}");
 
-        // ✅ Новый вариант — используем SpawnResultFoods
         if (poopSpawnPoint != null)
         {
+            // 💩 Спавним еду
             target.SpawnResultFoods(poopSpawnPoint.position);
+
+            // 💨 Спавним эффект пука
+            if (fartEffectPrefab != null)
+            {
+                GameObject fartFX = Instantiate(fartEffectPrefab, poopSpawnPoint.position, Quaternion.identity);
+                Destroy(fartFX, fartEffectLifetime);
+                Debug.Log("💨 Эффект пука создан!");
+            }
         }
         else
         {
@@ -150,7 +176,15 @@ public class PlayerDigest : MonoBehaviour
         currentStomach -= target.stomachLoad;
         currentStomach = Mathf.Max(0, currentStomach);
 
+        PlaySound(poopSound);
+
         Debug.Log($"🧮 Желудок: {currentStomach}/{stomachCapacity}");
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        if (clip != null)
+            audioSource.PlayOneShot(clip);
     }
 
     private void OnDrawGizmosSelected()
