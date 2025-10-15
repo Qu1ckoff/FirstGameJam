@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1638.4
     height: 932.8
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Game
   m_RootView: {fileID: 9}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -69,8 +69,8 @@ MonoBehaviour:
     y: 0
     width: 677.6
     height: 430
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
@@ -202,8 +202,8 @@ MonoBehaviour:
     y: 0
     width: 295.20007
     height: 882.8
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -550,23 +550,23 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 20610000
-    m_LastClickedID: 24864
-    m_ExpandedIDs: 00000000aa600000ac60000000ca9a3b
+    m_SelectedIDs: 2e610000
+    m_LastClickedID: 24878
+    m_ExpandedIDs: 00000000b8600000ba60000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: RecycleFood
-      m_OriginalName: RecycleFood
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 35476
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 6}
     m_SearchString: 
@@ -580,7 +580,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000aa600000ac600000
+    m_ExpandedIDs: 00000000b8600000ba600000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -722,7 +722,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 2e4bf9ff824bf9ff904ff9ff2650f9ffc673f9ff1a75f9ff9877f9ffc8c6f9ff0042faffb682faff78b1faff4ee5faff3ef5fbff30f6fbff38d8feff3af8feff9447ffffb054ffff0297ffff14fbffffc8b306002242070078430700f46e0700006f0700
+      m_ExpandedIDs: b46cffff086dffff1271ffffa471ffff4095ffff9296ffff32c0ffff14fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1152,7 +1152,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.23288624, y: -0.53503084, z: 0.1541709, w: 0.7983816}
     speed: 2
-    m_Value: {x: 0.23364742, y: -0.5343974, z: 0.15468474, w: 0.797434}
+    m_Value: {x: 0.23269135, y: -0.5345831, z: 0.15404189, w: 0.7977135}
   m_Size:
     m_Target: 0.8616842
     speed: 2

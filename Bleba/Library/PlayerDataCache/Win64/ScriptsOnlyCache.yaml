@@ -45,8 +45,6 @@ ScriptsOnlyBuild:
     - Cinemachine.CinemachinePOV
     - Cinemachine.CinemachinePipeline
     - Cinemachine.CinemachineVirtualCamera
-    Unity.AI.Navigation.Editor.dll:
-    - Unity.AI.Navigation.Editor.NavMeshAssetManager
     Unity.AI.Navigation.dll:
     - Unity.AI.Navigation.NavMeshSurface
     Unity.PlasticSCM.Editor.dll:
@@ -56,10 +54,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -210,25 +206,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5698}
     - Class: 114
-      Script: {instanceID: 5888}
+      Script: {instanceID: 5890}
     - Class: 114
-      Script: {instanceID: 6004}
+      Script: {instanceID: 6006}
     - Class: 114
-      Script: {instanceID: 6288}
+      Script: {instanceID: 6290}
     - Class: 114
-      Script: {instanceID: 6562}
+      Script: {instanceID: 6564}
     - Class: 114
-      Script: {instanceID: 6860}
+      Script: {instanceID: 6862}
     - Class: 114
-      Script: {instanceID: 6894}
+      Script: {instanceID: 6896}
     - Class: 114
-      Script: {instanceID: 6978}
+      Script: {instanceID: 6980}
     - Class: 114
-      Script: {instanceID: 7016}
+      Script: {instanceID: 7018}
     - Class: 114
-      Script: {instanceID: 7094}
+      Script: {instanceID: 7096}
     - Class: 114
-      Script: {instanceID: 7392}
+      Script: {instanceID: 7394}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -365,27 +361,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5888}
     - Class: 114
-      Script: {instanceID: 6004}
+      Script: {instanceID: 5890}
     - Class: 114
-      Script: {instanceID: 6288}
+      Script: {instanceID: 6006}
     - Class: 114
-      Script: {instanceID: 6562}
+      Script: {instanceID: 6290}
     - Class: 114
-      Script: {instanceID: 6894}
+      Script: {instanceID: 6564}
     - Class: 114
-      Script: {instanceID: 6978}
+      Script: {instanceID: 6896}
     - Class: 114
-      Script: {instanceID: 7016}
+      Script: {instanceID: 6980}
     - Class: 114
-      Script: {instanceID: 7030}
+      Script: {instanceID: 7018}
     - Class: 114
-      Script: {instanceID: 7094}
+      Script: {instanceID: 7032}
     - Class: 114
-      Script: {instanceID: 7392}
+      Script: {instanceID: 7096}
     - Class: 114
-      Script: {instanceID: 7686}
+      Script: {instanceID: 7394}
     - Class: 114
-      Script: {instanceID: 39902}
+      Script: {instanceID: 7688}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -403,6 +399,10 @@ ScriptsOnlyBuild:
     - Class: 195
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 205
       Script: {instanceID: 0}
@@ -484,13 +484,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5698}
     - Class: 114
-      Script: {instanceID: 6562}
+      Script: {instanceID: 6564}
     - Class: 114
-      Script: {instanceID: 6894}
+      Script: {instanceID: 6896}
     - Class: 114
-      Script: {instanceID: 7030}
+      Script: {instanceID: 7032}
     - Class: 114
-      Script: {instanceID: 7094}
+      Script: {instanceID: 7096}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -583,17 +583,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5698}
     - Class: 114
-      Script: {instanceID: 6562}
+      Script: {instanceID: 6564}
     - Class: 114
-      Script: {instanceID: 6690}
+      Script: {instanceID: 6692}
     - Class: 114
-      Script: {instanceID: 6894}
+      Script: {instanceID: 6896}
     - Class: 114
-      Script: {instanceID: 7030}
+      Script: {instanceID: 7032}
     - Class: 114
-      Script: {instanceID: 7094}
+      Script: {instanceID: 7096}
     - Class: 114
-      Script: {instanceID: 8484}
+      Script: {instanceID: 8486}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1535,6 +1535,12 @@ ScriptsOnlyBuild:
     className: CinemachinePostProcessing
   - hash:
       serializedVersion: 2
+      Hash: 88db381b7ce20cf70bbe1c169a540c29
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SlotMachine
+  - hash:
+      serializedVersion: 2
       Hash: 84f00496bc2c39b55fd8db7ccde08bc0
     assemblyName: Assembly-CSharp
     namespaceName: 
@@ -1989,12 +1995,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 88db381b7ce20cf70bbe1c169a540c29
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: SlotMachine
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
