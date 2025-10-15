@@ -1,161 +1,163 @@
 { "cat":"", "pid":12345, "tid":0, "ts":0, "ph":"M", "name":"process_name", "args": { "name":"bee_backend" } }
-,{ "pid":12345, "tid":0, "ts":1760555387837794, "dur":73, "ph":"X", "name": "IPC_Client_InitializeAndConnectToParent",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":0, "ts":1760555387837904, "dur":2269, "ph":"X", "name": "DriverInitData",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":0, "ts":1760555387840187, "dur":110, "ph":"X", "name": "RemoveStaleOutputs",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":0, "ts":1760555387840330, "dur":353, "ph":"X", "name": "BuildQueueInit",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":0, "ts":1760555387840979, "dur":109, "ph":"X", "name": "EmitFirstTimeEnqueue",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/resources.assets" }}
-,{ "pid":12345, "tid":0, "ts":1760555387841131, "dur":66, "ph":"X", "name": "EmitFirstTimeEnqueue",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/RuntimeInitializeOnLoads.json" }}
-,{ "pid":12345, "tid":0, "ts":1760555387842977, "dur":51, "ph":"X", "name": "EmitFirstTimeEnqueue",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.WindModule.dll" }}
-,{ "pid":12345, "tid":0, "ts":1760555387840702, "dur":3484, "ph":"X", "name": "EnqueueRequestedNodes",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":0, "ts":1760555387844188, "dur":131264, "ph":"X", "name": "WaitForBuildFinished", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":0, "ts":1760555387975454, "dur":221, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":0, "ts":1760555387975927, "dur":1313, "ph":"X", "name": "Tundra",  "args": { "detail":"Write AllBuiltNodes" }}
-,{ "pid":12345, "tid":1, "ts":1760555387841248, "dur":2977, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":1, "ts":1760555387844229, "dur":4995, "ph":"X", "name": "CheckDagSignatures",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":1, "ts":1760555387849241, "dur":81, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"WriteText Library/Bee/artifacts/csharpactions/boot.config_tyr4.info" }}
-,{ "pid":12345, "tid":1, "ts":1760555387849323, "dur":72, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":1, "ts":1760555387849401, "dur":258, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Library\\PlayerDataCache\\Win64\\Data\\boot.config" }}
-,{ "pid":12345, "tid":1, "ts":1760555387849670, "dur":139, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Library\\PlayerDataCache\\Win64\\Data\\ScriptingAssemblies.json" }}
-,{ "pid":12345, "tid":1, "ts":1760555387850066, "dur":608, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Assembly-CSharp.dll" }}
-,{ "pid":12345, "tid":1, "ts":1760555387850677, "dur":483, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Unity.VisualScripting.Core.dll" }}
-,{ "pid":12345, "tid":1, "ts":1760555387849399, "dur":1864, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"AddBootConfigGUID Library/Bee/artifacts/WinPlayerBuildProgram/boot.config" }}
-,{ "pid":12345, "tid":1, "ts":1760555387851785, "dur":119915, "ph":"X", "name": "AddBootConfigGUID",  "args": { "detail":"Library/Bee/artifacts/WinPlayerBuildProgram/boot.config" }}
-,{ "pid":12345, "tid":1, "ts":1760555387974563, "dur":177, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Library\\Bee\\artifacts\\WinPlayerBuildProgram\\boot.config" }}
-,{ "pid":12345, "tid":1, "ts":1760555387974563, "dur":178, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/boot.config" }}
-,{ "pid":12345, "tid":1, "ts":1760555387974759, "dur":629, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/boot.config" }}
-,{ "pid":12345, "tid":2, "ts":1760555387841327, "dur":2920, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":2, "ts":1760555387844252, "dur":1009, "ph":"X", "name": "EarlyStatNonGeneratedFile",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":2, "ts":1760555387845262, "dur":3986, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":2, "ts":1760555387849252, "dur":107, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/config" }}
-,{ "pid":12345, "tid":2, "ts":1760555387849374, "dur":88, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/config" }}
-,{ "pid":12345, "tid":2, "ts":1760555387849468, "dur":154, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\EmbedRuntime\\mono-2.0-bdwgc.dll" }}
-,{ "pid":12345, "tid":2, "ts":1760555387849463, "dur":160, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll" }}
-,{ "pid":12345, "tid":2, "ts":1760555387849638, "dur":136, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\MonoBleedingEdge\\lib\\mono\\unityjit-win32\\System.IO.Compression.FileSystem.dll" }}
-,{ "pid":12345, "tid":2, "ts":1760555387849637, "dur":137, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/System.IO.Compression.FileSystem.dll" }}
-,{ "pid":12345, "tid":2, "ts":1760555387851337, "dur":11125, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets2.assets.resS" }}
-,{ "pid":12345, "tid":2, "ts":1760555387862586, "dur":7553, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/level0.resS" }}
-,{ "pid":12345, "tid":2, "ts":1760555387870156, "dur":105319, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":3, "ts":1760555387841313, "dur":2928, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":3, "ts":1760555387844245, "dur":1030, "ph":"X", "name": "EarlyStatNonGeneratedFile",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":3, "ts":1760555387845275, "dur":4032, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":3, "ts":1760555387849308, "dur":112, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/4.5/Browsers/Compat.browser" }}
-,{ "pid":12345, "tid":3, "ts":1760555387849522, "dur":125, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Resources/unity default resources" }}
-,{ "pid":12345, "tid":3, "ts":1760555387849706, "dur":1209, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Unity.TextMeshPro.dll" }}
-,{ "pid":12345, "tid":3, "ts":1760555387849705, "dur":1210, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/Unity.TextMeshPro.dll" }}
-,{ "pid":12345, "tid":3, "ts":1760555387850938, "dur":9199, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets0.assets" }}
-,{ "pid":12345, "tid":3, "ts":1760555387860167, "dur":7368, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/level3" }}
-,{ "pid":12345, "tid":3, "ts":1760555387867552, "dur":107892, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":4, "ts":1760555387841358, "dur":2904, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":4, "ts":1760555387844267, "dur":1019, "ph":"X", "name": "EarlyStatNonGeneratedFile",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":4, "ts":1760555387845287, "dur":4007, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":4, "ts":1760555387849296, "dur":101, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/4.5/DefaultWsdlHelpGenerator.aspx" }}
-,{ "pid":12345, "tid":4, "ts":1760555387849417, "dur":93, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\2.0\\web.config" }}
-,{ "pid":12345, "tid":4, "ts":1760555387849413, "dur":97, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/2.0/web.config" }}
-,{ "pid":12345, "tid":4, "ts":1760555387849518, "dur":143, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/2.0/web.config" }}
-,{ "pid":12345, "tid":4, "ts":1760555387849696, "dur":557, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Unity.VisualScripting.State.dll" }}
-,{ "pid":12345, "tid":4, "ts":1760555387849695, "dur":559, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/Unity.VisualScripting.State.dll" }}
-,{ "pid":12345, "tid":4, "ts":1760555387850307, "dur":369, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.Physics2DModule.dll" }}
-,{ "pid":12345, "tid":4, "ts":1760555387852502, "dur":9061, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets1.assets" }}
-,{ "pid":12345, "tid":4, "ts":1760555387868507, "dur":159, "ph":"X", "name": "EmitNodeFinish",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":4, "ts":1760555387861640, "dur":7041, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/level2.resS" }}
-,{ "pid":12345, "tid":4, "ts":1760555387868709, "dur":106738, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":5, "ts":1760555387841271, "dur":2961, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":5, "ts":1760555387844238, "dur":1068, "ph":"X", "name": "EarlyStatNonGeneratedFile",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":5, "ts":1760555387845307, "dur":3948, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":5, "ts":1760555387849263, "dur":128, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\4.5\\machine.config" }}
-,{ "pid":12345, "tid":5, "ts":1760555387849256, "dur":136, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/4.5/machine.config" }}
-,{ "pid":12345, "tid":5, "ts":1760555387849411, "dur":149, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/4.0/Browsers/Compat.browser" }}
-,{ "pid":12345, "tid":5, "ts":1760555387849641, "dur":90, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\MonoBleedingEdge\\lib\\mono\\unityjit-win32\\System.EnterpriseServices.dll" }}
-,{ "pid":12345, "tid":5, "ts":1760555387849639, "dur":93, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/System.EnterpriseServices.dll" }}
-,{ "pid":12345, "tid":5, "ts":1760555387849745, "dur":1401, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Unity.VisualScripting.Core.dll" }}
-,{ "pid":12345, "tid":5, "ts":1760555387849744, "dur":1403, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/Unity.VisualScripting.Core.dll" }}
-,{ "pid":12345, "tid":5, "ts":1760555387851207, "dur":3078, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/Resources/unity_builtin_extra" }}
-,{ "pid":12345, "tid":5, "ts":1760555387854329, "dur":21805, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/resources.assets.resS" }}
-,{ "pid":12345, "tid":5, "ts":1760555387876150, "dur":99301, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":6, "ts":1760555387841352, "dur":2903, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":6, "ts":1760555387844259, "dur":960, "ph":"X", "name": "EarlyStatNonGeneratedFile",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":6, "ts":1760555387845220, "dur":4094, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":6, "ts":1760555387849321, "dur":122, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\4.0\\web.config" }}
-,{ "pid":12345, "tid":6, "ts":1760555387849315, "dur":129, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/4.0/web.config" }}
-,{ "pid":12345, "tid":6, "ts":1760555387849459, "dur":139, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\EmbedRuntime\\MonoPosixHelper.dll" }}
-,{ "pid":12345, "tid":6, "ts":1760555387849457, "dur":142, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/EmbedRuntime/MonoPosixHelper.dll" }}
-,{ "pid":12345, "tid":6, "ts":1760555387849733, "dur":876, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Unity.VisualScripting.Flow.dll" }}
-,{ "pid":12345, "tid":6, "ts":1760555387849732, "dur":877, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/Unity.VisualScripting.Flow.dll" }}
-,{ "pid":12345, "tid":6, "ts":1760555387851798, "dur":8048, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets1.resource" }}
-,{ "pid":12345, "tid":6, "ts":1760555387860006, "dur":7518, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/level3.resS" }}
-,{ "pid":12345, "tid":6, "ts":1760555387870931, "dur":53, "ph":"X", "name": "EmitNodeFinish",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":6, "ts":1760555387867561, "dur":3434, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/globalgamemanagers" }}
-,{ "pid":12345, "tid":6, "ts":1760555387871009, "dur":104440, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":7, "ts":1760555387841390, "dur":2880, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":7, "ts":1760555387844275, "dur":1124, "ph":"X", "name": "EarlyStatNonGeneratedFile",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":7, "ts":1760555387845400, "dur":3852, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":7, "ts":1760555387849257, "dur":101, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/4.5/settings.map" }}
-,{ "pid":12345, "tid":7, "ts":1760555387849375, "dur":102, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/4.5/settings.map" }}
-,{ "pid":12345, "tid":7, "ts":1760555387849482, "dur":529, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Temp\\StagingArea\\WindowsPlayer.exe" }}
-,{ "pid":12345, "tid":7, "ts":1760555387849477, "dur":534, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba.exe" }}
-,{ "pid":12345, "tid":7, "ts":1760555387850791, "dur":8704, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets3.assets" }}
-,{ "pid":12345, "tid":7, "ts":1760555387859536, "dur":6526, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/resources.assets" }}
-,{ "pid":12345, "tid":7, "ts":1760555387866104, "dur":229, "ph":"X", "name": "EmitNodeStart",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":7, "ts":1760555387866339, "dur":4819, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/globalgamemanagers.assets.resS" }}
-,{ "pid":12345, "tid":7, "ts":1760555387871173, "dur":104275, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":8, "ts":1760555387841421, "dur":2860, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":8, "ts":1760555387844284, "dur":793, "ph":"X", "name": "EarlyStatNonGeneratedFile",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":8, "ts":1760555387845077, "dur":4160, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":8, "ts":1760555387849261, "dur":97, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\UnityCrashHandler64.exe" }}
-,{ "pid":12345, "tid":8, "ts":1760555387849247, "dur":112, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/UnityCrashHandler64.exe" }}
-,{ "pid":12345, "tid":8, "ts":1760555387849375, "dur":105, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/UnityCrashHandler64.exe" }}
-,{ "pid":12345, "tid":8, "ts":1760555387849563, "dur":210, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/System.dll" }}
-,{ "pid":12345, "tid":8, "ts":1760555387849775, "dur":656, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Assembly-CSharp.dll" }}
-,{ "pid":12345, "tid":8, "ts":1760555387849774, "dur":658, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/Assembly-CSharp.dll" }}
-,{ "pid":12345, "tid":8, "ts":1760555387851135, "dur":10901, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets2.resource" }}
-,{ "pid":12345, "tid":8, "ts":1760555387862126, "dur":6793, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/level1.resS" }}
-,{ "pid":12345, "tid":8, "ts":1760555387868937, "dur":106505, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":9, "ts":1760555387841452, "dur":2837, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":9, "ts":1760555387844294, "dur":214, "ph":"X", "name": "EarlyStatNonGeneratedFile",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":9, "ts":1760555387844509, "dur":4731, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":9, "ts":1760555387849251, "dur":137, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\mconfig\\config.xml" }}
-,{ "pid":12345, "tid":9, "ts":1760555387849241, "dur":148, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/mconfig/config.xml" }}
-,{ "pid":12345, "tid":9, "ts":1760555387849452, "dur":80, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/2.0/Browsers/Compat.browser" }}
-,{ "pid":12345, "tid":9, "ts":1760555387849634, "dur":68, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\MonoBleedingEdge\\lib\\mono\\unityjit-win32\\System.Net.Http.dll" }}
-,{ "pid":12345, "tid":9, "ts":1760555387849633, "dur":69, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/System.Net.Http.dll" }}
-,{ "pid":12345, "tid":9, "ts":1760555387849723, "dur":717, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Unity.Timeline.dll" }}
-,{ "pid":12345, "tid":9, "ts":1760555387849722, "dur":718, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/Unity.Timeline.dll" }}
-,{ "pid":12345, "tid":9, "ts":1760555387851521, "dur":10174, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets2.assets" }}
-,{ "pid":12345, "tid":9, "ts":1760555387861720, "dur":4888, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/level2" }}
-,{ "pid":12345, "tid":9, "ts":1760555387866640, "dur":3581, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/globalgamemanagers.assets" }}
-,{ "pid":12345, "tid":9, "ts":1760555387870238, "dur":105221, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":10, "ts":1760555387841476, "dur":2823, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":10, "ts":1760555387844326, "dur":4907, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":10, "ts":1760555387849249, "dur":121, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":10, "ts":1760555387849409, "dur":78, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\4.0\\machine.config" }}
-,{ "pid":12345, "tid":10, "ts":1760555387849402, "dur":86, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/4.0/machine.config" }}
-,{ "pid":12345, "tid":10, "ts":1760555387849507, "dur":113, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/4.0/machine.config" }}
-,{ "pid":12345, "tid":10, "ts":1760555387849643, "dur":91, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\MonoBleedingEdge\\lib\\mono\\unityjit-win32\\System.Drawing.dll" }}
-,{ "pid":12345, "tid":10, "ts":1760555387849641, "dur":94, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/System.Drawing.dll" }}
-,{ "pid":12345, "tid":10, "ts":1760555387849748, "dur":624, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Unity.AI.Navigation.dll" }}
-,{ "pid":12345, "tid":10, "ts":1760555387849748, "dur":625, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/Unity.AI.Navigation.dll" }}
-,{ "pid":12345, "tid":10, "ts":1760555387850422, "dur":269, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":10, "ts":1760555387852911, "dur":9194, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets0.resource" }}
-,{ "pid":12345, "tid":10, "ts":1760555387862136, "dur":8267, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/level1" }}
-,{ "pid":12345, "tid":10, "ts":1760555387870425, "dur":105036, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":11, "ts":1760555387841510, "dur":2804, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":11, "ts":1760555387844314, "dur":4936, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":11, "ts":1760555387849252, "dur":104, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/browscap.ini" }}
-,{ "pid":12345, "tid":11, "ts":1760555387849374, "dur":74, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/browscap.ini" }}
-,{ "pid":12345, "tid":11, "ts":1760555387849449, "dur":226, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/2.0/DefaultWsdlHelpGenerator.aspx" }}
-,{ "pid":12345, "tid":11, "ts":1760555387849735, "dur":901, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\UnityEngine.UI.dll" }}
-,{ "pid":12345, "tid":11, "ts":1760555387849734, "dur":903, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.UI.dll" }}
-,{ "pid":12345, "tid":11, "ts":1760555387852197, "dur":18217, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets1.assets.resS" }}
-,{ "pid":12345, "tid":11, "ts":1760555387870434, "dur":105022, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":12, "ts":1760555387841550, "dur":2775, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":12, "ts":1760555387844325, "dur":4926, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":12, "ts":1760555387849267, "dur":95, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\4.5\\web.config" }}
-,{ "pid":12345, "tid":12, "ts":1760555387849252, "dur":111, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/4.5/web.config" }}
-,{ "pid":12345, "tid":12, "ts":1760555387849446, "dur":50, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/2.0/machine.config" }}
-,{ "pid":12345, "tid":12, "ts":1760555387849694, "dur":1140, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Cinemachine.dll" }}
-,{ "pid":12345, "tid":12, "ts":1760555387849693, "dur":1141, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/Cinemachine.dll" }}
-,{ "pid":12345, "tid":12, "ts":1760555387850864, "dur":11773, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets0.assets.resS" }}
-,{ "pid":12345, "tid":12, "ts":1760555387862691, "dur":7181, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/level0" }}
-,{ "pid":12345, "tid":12, "ts":1760555387869902, "dur":105568, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":0, "ts":1760555387979704, "dur":510, "ph":"X", "name": "ProfilerWriteOutput" }
+,{ "pid":12345, "tid":0, "ts":1760558687146165, "dur":78, "ph":"X", "name": "IPC_Client_InitializeAndConnectToParent",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1760558687151161, "dur":78, "ph":"X", "name": "EmitBuildStart",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1760558687146288, "dur":7221, "ph":"X", "name": "DriverInitData",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1760558687153525, "dur":258, "ph":"X", "name": "RemoveStaleOutputs",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1760558687153835, "dur":498, "ph":"X", "name": "BuildQueueInit",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1760558687154848, "dur":50, "ph":"X", "name": "EmitFirstTimeEnqueue",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Resources/unity_builtin_extra" }}
+,{ "pid":12345, "tid":0, "ts":1760558687154971, "dur":56, "ph":"X", "name": "EmitFirstTimeEnqueue",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/sharedassets0.assets" }}
+,{ "pid":12345, "tid":0, "ts":1760558687155632, "dur":97, "ph":"X", "name": "EmitFirstTimeEnqueue",  "args": { "detail":"AddBootConfigGUID Library/Bee/artifacts/WinPlayerBuildProgram/boot.config" }}
+,{ "pid":12345, "tid":0, "ts":1760558687155732, "dur":158, "ph":"X", "name": "EmitFirstTimeEnqueue",  "args": { "detail":"WriteText Library/Bee/artifacts/csharpactions/boot.config_tyr4.info" }}
+,{ "pid":12345, "tid":0, "ts":1760558687156772, "dur":65, "ph":"X", "name": "EmitFirstTimeEnqueue",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.SubsystemsModule.dll" }}
+,{ "pid":12345, "tid":0, "ts":1760558687156840, "dur":50, "ph":"X", "name": "EmitFirstTimeEnqueue",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.TLSModule.dll" }}
+,{ "pid":12345, "tid":0, "ts":1760558687158030, "dur":62, "ph":"X", "name": "EmitFirstTimeEnqueue",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/System.Net.Http.dll" }}
+,{ "pid":12345, "tid":0, "ts":1760558687154368, "dur":4533, "ph":"X", "name": "EnqueueRequestedNodes",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1760558687158904, "dur":118330, "ph":"X", "name": "WaitForBuildFinished", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1760558687277235, "dur":293, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1760558687277685, "dur":996, "ph":"X", "name": "Tundra",  "args": { "detail":"Write AllBuiltNodes" }}
+,{ "pid":12345, "tid":1, "ts":1760558687155022, "dur":3893, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1760558687158922, "dur":4705, "ph":"X", "name": "CheckDagSignatures",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1760558687163649, "dur":92, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1760558687163756, "dur":214, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Library\\PlayerDataCache\\Win64\\Data\\boot.config" }}
+,{ "pid":12345, "tid":1, "ts":1760558687164011, "dur":277, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Library\\PlayerDataCache\\Win64\\Data\\ScriptingAssemblies.json" }}
+,{ "pid":12345, "tid":1, "ts":1760558687164627, "dur":224, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Assembly-CSharp.dll" }}
+,{ "pid":12345, "tid":1, "ts":1760558687164852, "dur":176, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Unity.AI.Navigation.dll" }}
+,{ "pid":12345, "tid":1, "ts":1760558687165029, "dur":1100, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Unity.VisualScripting.Core.dll" }}
+,{ "pid":12345, "tid":1, "ts":1760558687163755, "dur":2497, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"AddBootConfigGUID Library/Bee/artifacts/WinPlayerBuildProgram/boot.config" }}
+,{ "pid":12345, "tid":1, "ts":1760558687166863, "dur":105127, "ph":"X", "name": "AddBootConfigGUID",  "args": { "detail":"Library/Bee/artifacts/WinPlayerBuildProgram/boot.config" }}
+,{ "pid":12345, "tid":1, "ts":1760558687274997, "dur":1461, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Library\\Bee\\artifacts\\WinPlayerBuildProgram\\boot.config" }}
+,{ "pid":12345, "tid":1, "ts":1760558687274997, "dur":1463, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/boot.config" }}
+,{ "pid":12345, "tid":1, "ts":1760558687276482, "dur":684, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/boot.config" }}
+,{ "pid":12345, "tid":2, "ts":1760558687155081, "dur":3855, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1760558687158941, "dur":1266, "ph":"X", "name": "EarlyStatNonGeneratedFile",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1760558687160208, "dur":3434, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1760558687163655, "dur":90, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\mconfig\\config.xml" }}
+,{ "pid":12345, "tid":2, "ts":1760558687163650, "dur":96, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/mconfig/config.xml" }}
+,{ "pid":12345, "tid":2, "ts":1760558687163879, "dur":352, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\4.0\\web.config" }}
+,{ "pid":12345, "tid":2, "ts":1760558687163877, "dur":354, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/4.0/web.config" }}
+,{ "pid":12345, "tid":2, "ts":1760558687164232, "dur":65, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1760558687164307, "dur":81, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1760558687164407, "dur":611, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/System.Data.dll" }}
+,{ "pid":12345, "tid":2, "ts":1760558687165021, "dur":594, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Unity.AI.Navigation.dll" }}
+,{ "pid":12345, "tid":2, "ts":1760558687165019, "dur":597, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/Unity.AI.Navigation.dll" }}
+,{ "pid":12345, "tid":2, "ts":1760558687184178, "dur":89, "ph":"X", "name": "EmitNodeFinish",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1760558687167852, "dur":16501, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets0.resource" }}
+,{ "pid":12345, "tid":2, "ts":1760558687184392, "dur":5244, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/globalgamemanagers.assets.resS" }}
+,{ "pid":12345, "tid":2, "ts":1760558687189657, "dur":87600, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1760558687155096, "dur":3848, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1760558687158949, "dur":908, "ph":"X", "name": "EarlyStatNonGeneratedFile",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1760558687159857, "dur":4118, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1760558687163980, "dur":129, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/2.0/settings.map" }}
+,{ "pid":12345, "tid":3, "ts":1760558687164167, "dur":62, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Resources/unity default resources" }}
+,{ "pid":12345, "tid":3, "ts":1760558687164262, "dur":67, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1760558687164522, "dur":878, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Unity.TextMeshPro.dll" }}
+,{ "pid":12345, "tid":3, "ts":1760558687164521, "dur":880, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/Unity.TextMeshPro.dll" }}
+,{ "pid":12345, "tid":3, "ts":1760558687165435, "dur":90, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.GameCenterModule.dll" }}
+,{ "pid":12345, "tid":3, "ts":1760558687165543, "dur":155, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\UnityPlayer.dll" }}
+,{ "pid":12345, "tid":3, "ts":1760558687165542, "dur":156, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/UnityPlayer.dll" }}
+,{ "pid":12345, "tid":3, "ts":1760558687168086, "dur":27430, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets0.assets.resS" }}
+,{ "pid":12345, "tid":3, "ts":1760558687195532, "dur":81704, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1760558687155132, "dur":3832, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1760558687158969, "dur":980, "ph":"X", "name": "EarlyStatNonGeneratedFile",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1760558687159949, "dur":4536, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1760558687164497, "dur":330, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Unity.VisualScripting.State.dll" }}
+,{ "pid":12345, "tid":4, "ts":1760558687164490, "dur":339, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/Unity.VisualScripting.State.dll" }}
+,{ "pid":12345, "tid":4, "ts":1760558687164881, "dur":856, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Unity.VisualScripting.Flow.dll" }}
+,{ "pid":12345, "tid":4, "ts":1760558687164879, "dur":859, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/Unity.VisualScripting.Flow.dll" }}
+,{ "pid":12345, "tid":4, "ts":1760558687179589, "dur":4618, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets0.assets" }}
+,{ "pid":12345, "tid":4, "ts":1760558687184314, "dur":3525, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/level0.resS" }}
+,{ "pid":12345, "tid":4, "ts":1760558687187857, "dur":89444, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1760558687155047, "dur":3882, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1760558687158934, "dur":1261, "ph":"X", "name": "EarlyStatNonGeneratedFile",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1760558687160196, "dur":3458, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1760558687163661, "dur":83, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/config" }}
+,{ "pid":12345, "tid":5, "ts":1760558687163777, "dur":69, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\4.5\\web.config" }}
+,{ "pid":12345, "tid":5, "ts":1760558687163769, "dur":78, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/4.5/web.config" }}
+,{ "pid":12345, "tid":5, "ts":1760558687163865, "dur":73, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/4.5/Browsers/Compat.browser" }}
+,{ "pid":12345, "tid":5, "ts":1760558687164085, "dur":573, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Temp\\StagingArea\\WindowsPlayer.exe" }}
+,{ "pid":12345, "tid":5, "ts":1760558687164085, "dur":573, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba.exe" }}
+,{ "pid":12345, "tid":5, "ts":1760558687164682, "dur":224, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Unity.Timeline.dll" }}
+,{ "pid":12345, "tid":5, "ts":1760558687164681, "dur":226, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/Unity.Timeline.dll" }}
+,{ "pid":12345, "tid":5, "ts":1760558687164922, "dur":1257, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Unity.VisualScripting.Core.dll" }}
+,{ "pid":12345, "tid":5, "ts":1760558687164921, "dur":1259, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/Unity.VisualScripting.Core.dll" }}
+,{ "pid":12345, "tid":5, "ts":1760558687166289, "dur":3257, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/Resources/unity_builtin_extra" }}
+,{ "pid":12345, "tid":5, "ts":1760558687169566, "dur":20830, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/resources.assets.resS" }}
+,{ "pid":12345, "tid":5, "ts":1760558687190413, "dur":86835, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1760558687155121, "dur":3832, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1760558687158958, "dur":816, "ph":"X", "name": "EarlyStatNonGeneratedFile",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1760558687159774, "dur":5430, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1760558687165245, "dur":133, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.TextCoreFontEngineModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1760558687165437, "dur":101, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.GIModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1760558687167328, "dur":15505, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets1.assets.resS" }}
+,{ "pid":12345, "tid":6, "ts":1760558687182858, "dur":3299, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/level1" }}
+,{ "pid":12345, "tid":6, "ts":1760558687186181, "dur":91047, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1760558687155172, "dur":3856, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1760558687159031, "dur":996, "ph":"X", "name": "EarlyStatNonGeneratedFile",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1760558687160027, "dur":3872, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1760558687164083, "dur":950, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\EmbedRuntime\\mono-2.0-bdwgc.dll" }}
+,{ "pid":12345, "tid":7, "ts":1760558687164081, "dur":953, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll" }}
+,{ "pid":12345, "tid":7, "ts":1760558687165113, "dur":74, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1760558687165239, "dur":112, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.UIElementsModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1760558687165480, "dur":78, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.CoreModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1760558687165956, "dur":9925, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets2.assets.resS" }}
+,{ "pid":12345, "tid":7, "ts":1760558687175922, "dur":8381, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/resources.assets" }}
+,{ "pid":12345, "tid":7, "ts":1760558687184333, "dur":3504, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/level0" }}
+,{ "pid":12345, "tid":7, "ts":1760558687187859, "dur":89430, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1760558687155219, "dur":3853, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1760558687159076, "dur":699, "ph":"X", "name": "EarlyStatNonGeneratedFile",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1760558687159776, "dur":5286, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1760558687165208, "dur":84, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.TextRenderingModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1760558687165424, "dur":78, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.JSONSerializeModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1760558687166679, "dur":15853, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets1.resource" }}
+,{ "pid":12345, "tid":8, "ts":1760558687182587, "dur":3825, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/level2" }}
+,{ "pid":12345, "tid":8, "ts":1760558687186428, "dur":90893, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1760558687155251, "dur":3871, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1760558687159125, "dur":257, "ph":"X", "name": "EarlyStatNonGeneratedFile",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1760558687159383, "dur":5877, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1760558687165281, "dur":125, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.TerrainModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1760558687182488, "dur":138, "ph":"X", "name": "EmitNodeFinish",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1760558687166392, "dur":16240, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets2.resource" }}
+,{ "pid":12345, "tid":9, "ts":1760558687182685, "dur":5705, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/level1.resS" }}
+,{ "pid":12345, "tid":9, "ts":1760558687188403, "dur":88862, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1760558687155295, "dur":3902, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1760558687159221, "dur":4412, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1760558687163649, "dur":96, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1760558687163804, "dur":77, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1760558687163882, "dur":51, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/app.info" }}
+,{ "pid":12345, "tid":10, "ts":1760558687163934, "dur":92, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/4.0/DefaultWsdlHelpGenerator.aspx" }}
+,{ "pid":12345, "tid":10, "ts":1760558687164080, "dur":75, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\EmbedRuntime\\MonoPosixHelper.dll" }}
+,{ "pid":12345, "tid":10, "ts":1760558687164076, "dur":80, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/EmbedRuntime/MonoPosixHelper.dll" }}
+,{ "pid":12345, "tid":10, "ts":1760558687164328, "dur":67, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1760558687164477, "dur":422, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\Cinemachine.dll" }}
+,{ "pid":12345, "tid":10, "ts":1760558687164476, "dur":424, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/Cinemachine.dll" }}
+,{ "pid":12345, "tid":10, "ts":1760558687164919, "dur":396, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"D:\\GitHub\\FirstGameJam\\Bleba\\Library\\Bee\\PlayerScriptAssemblies\\UnityEngine.UI.dll" }}
+,{ "pid":12345, "tid":10, "ts":1760558687164918, "dur":397, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.UI.dll" }}
+,{ "pid":12345, "tid":10, "ts":1760558687165417, "dur":58, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.ImageConversionModule.dll" }}
+,{ "pid":12345, "tid":10, "ts":1760558687165488, "dur":77, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.ClusterRendererModule.dll" }}
+,{ "pid":12345, "tid":10, "ts":1760558687181434, "dur":359, "ph":"X", "name": "EmitNodeFinish",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1760558687166982, "dur":14861, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets2.assets" }}
+,{ "pid":12345, "tid":10, "ts":1760558687181960, "dur":3613, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/level3" }}
+,{ "pid":12345, "tid":10, "ts":1760558687185599, "dur":91631, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1760558687155320, "dur":3937, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1760558687159257, "dur":4377, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1760558687163657, "dur":101, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.62f2\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\UnityCrashHandler64.exe" }}
+,{ "pid":12345, "tid":11, "ts":1760558687163640, "dur":119, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/UnityCrashHandler64.exe" }}
+,{ "pid":12345, "tid":11, "ts":1760558687163898, "dur":1129, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/MonoBleedingEdge/etc/mono/4.0/settings.map" }}
+,{ "pid":12345, "tid":11, "ts":1760558687165214, "dur":96, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.TextCoreTextEngineModule.dll" }}
+,{ "pid":12345, "tid":11, "ts":1760558687165434, "dur":149, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.GridModule.dll" }}
+,{ "pid":12345, "tid":11, "ts":1760558687167569, "dur":14940, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets1.assets" }}
+,{ "pid":12345, "tid":11, "ts":1760558687182538, "dur":2909, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/level2.resS" }}
+,{ "pid":12345, "tid":11, "ts":1760558687188036, "dur":51, "ph":"X", "name": "EmitNodeFinish",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1760558687185476, "dur":2757, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/globalgamemanagers" }}
+,{ "pid":12345, "tid":11, "ts":1760558687188259, "dur":89021, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1760558687155357, "dur":3909, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1760558687159267, "dur":5864, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1760558687165224, "dur":111, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.TerrainPhysicsModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1760558687165397, "dur":64, "ph":"X", "name": "EmitNodeUpToDate",  "args": { "detail":"CopyFiles D:/Unity/Builds/Bloba/Bloba_Data/Managed/UnityEngine.LocalizationModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1760558687166166, "dur":15311, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/sharedassets3.assets" }}
+,{ "pid":12345, "tid":12, "ts":1760558687181549, "dur":253, "ph":"X", "name": "EmitNodeStart",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1760558687181822, "dur":3589, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/level3.resS" }}
+,{ "pid":12345, "tid":12, "ts":1760558687185456, "dur":2950, "ph":"X", "name": "CopyFiles",  "args": { "detail":"D:/Unity/Builds/Bloba/Bloba_Data/globalgamemanagers.assets" }}
+,{ "pid":12345, "tid":12, "ts":1760558687188417, "dur":88857, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1760558687280459, "dur":448, "ph":"X", "name": "ProfilerWriteOutput" }
 ,
